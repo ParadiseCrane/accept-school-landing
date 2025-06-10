@@ -1,18 +1,35 @@
 ---
 // File: src/pages/index.astro
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+
 import HeroSection from "../components/sections/Hero.astro";
 import WhyNowSection from "../components/sections/WhyNow.astro";
 import BotGuideSection from "../components/sections/BotGuide.astro";
 import EnglishTrackSection from "../components/sections/EnglishTrack.astro";
+
+const blockComponents = {
+  hero: HeroSection,
+  whyNow: WhyNowSection,
+  botGuide: BotGuideSection,
+  englishTrack: EnglishTrackSection,
+};
+
+const allBlocks = await getCollection("landing-blocks");
+const sortedBlocks = allBlocks.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout title="Accept School - Твой IT-старт!">
-  <HeroSection />
+  {
+    sortedBlocks.map((entry) => {
+      const Component = blockComponents[entry.data.block_type];
+      return <Component entry={entry} />;
+    })
+  }
 
-  <WhyNowSection />
+  <!-- <WhyNowSection /> -->
 
-  <BotGuideSection />
+  <!-- <BotGuideSection /> -->
 
-  <EnglishTrackSection />
+  <!-- <EnglishTrackSection /> -->
 </Layout>

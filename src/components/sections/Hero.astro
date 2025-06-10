@@ -1,20 +1,16 @@
+---
+const { entry } = Astro.props;
+const { title, subtitle, cta_text, cta_url } = entry.data;
+---
+
 <section class="hero-container">
   <div class="hero-content">
-    <h1>IT-карьера на Global-уровне? Начни в Telegram с Accept School! 🚀</h1>
-    <p class="subtitle">
-      Выбери свой идеальный курс по Python, C# или спортивному программированию
-      (и подготовься к ОГЭ!) через нашего умного Telegram-бота. Уникальные курсы
-      на английском с углубленным Tech English и AI-подсказки на платформе
-      Accept ждут тебя!
-    </p>
-    <a href="#" class="cta-button"> 🚀 Начать подбор курса в Telegram! </a>
+    <h1>{title}</h1>
+    <p class="subtitle">{subtitle}</p>
+    <a href={cta_url} class="cta-button">{cta_text}</a>
   </div>
   <div class="hero-visual">
-    <!-- This is where your stylish illustration or animation will go. -->
-    <!-- For now, it's a styled placeholder. -->
-    <div class="visual-placeholder">
-      <p>Visual/Animation</p>
-    </div>
+    <div class="visual-placeholder"><p>Visual/Animation</p></div>
   </div>
 </section>
 

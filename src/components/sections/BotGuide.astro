@@ -1,32 +1,26 @@
+---
+const { entry } = Astro.props;
+const { title, description, features, cta_text, cta_url } = entry.data;
+---
+
 <section class="bot-guide-container">
   <div class="content-wrapper">
-    <h2>Accept School + Telegram-бот = твой персональный IT-гид</h2>
-    <p class="description">
-      Забудь о скучных анкетах! Наш умный Telegram-бот 🤖 <a href="#"
-        >@AcceptSchoolBot</a
-      > сам расспросит тебя о целях и интересах и подберет идеальный курс. Это как
-      персональный AI-консультант, который всегда под рукой!
-    </p>
-
+    <h2>{title}</h2>
+    <p class="description" set:html={description} />
     <div class="features-grid">
-      <div class="feature-card">
-        <span class="icon">✨</span>
-        <h3>Твой личный AI-помощник на платформе</h3>
-        <p>Застрял? AI-подсказки помогут понять, а не списать.</p>
-      </div>
-      <div class="feature-card">
-        <span class="icon">🇬🇧/🇷🇺</span>
-        <h3>Учись на русском ИЛИ на английском</h3>
-        <p>Курсы мирового уровня – выбирай язык сам!</p>
-      </div>
-      <div class="feature-card">
-        <span class="icon">🛡️</span>
-        <h3>AI-антиплагиат</h3>
-        <p>Мы за честные знания и твои собственные проекты.</p>
-      </div>
+      {
+        features.map(
+          (feature: { icon: string; title: string; text: string }) => (
+            <div class="feature-card">
+              <span class="icon">{feature.icon}</span>
+              <h3>{feature.title}</h3>
+              <p>{feature.text}</p>
+            </div>
+          )
+        )
+      }
     </div>
-
-    <a href="#" class="cta-button"> Пообщайся с ботом и узнай свой IT-путь! </a>
+    <a href={cta_url} class="cta-button">{cta_text}</a>
   </div>
 </section>
 

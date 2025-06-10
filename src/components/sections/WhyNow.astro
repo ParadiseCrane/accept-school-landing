@@ -1,29 +1,21 @@
+---
+const { entry } = Astro.props;
+const { title, cards } = entry.data;
+---
+
 <section class="whynow-container">
-  <h2>
-    Почему сейчас – лучшее время ворваться в IT (и сделать это на английском)?
-  </h2>
-
+  <h2>{title}</h2>
   <div class="cards-grid">
-    <div class="info-card">
-      <h3>Для школьников</h3>
-      <p>
-        Хочешь создавать то, чем будут пользоваться миллионы? Говорить на одном
-        языке с разработчиками из Google и Apple? IT + English = твой
-        супер-шанс!
-      </p>
-    </div>
-    <div class="info-card">
-      <h3>Для родителей</h3>
-      <p>
-        Инвестируйте в глобальное будущее ребенка: IT-навыки, усиленные
-        техническим английским, открывают двери в международные компании и
-        проекты.
-      </p>
-    </div>
+    {
+      cards.map((card: { title: string; text: string }) => (
+        <div class="info-card">
+          <h3>{card.title}</h3>
+          <p>{card.text}</p>
+        </div>
+      ))
+    }
   </div>
-
   <div class="interactive-feature">
-    <!-- This is the placeholder for your interactive salary calculator -->
     <p>Здесь будет интерактивный калькулятор зарплат</p>
   </div>
 </section>

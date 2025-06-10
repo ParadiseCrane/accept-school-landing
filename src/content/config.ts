@@ -1,21 +1,40 @@
-import { defineCollection, z } from 'astro:content';
+import { z, defineCollection } from 'astro:content';
 
-const contentBlockCollection = defineCollection({
-    type: 'content', // 'content' for Markdown files
+const landingBlocksCollection = defineCollection({
+    type: 'content',
     schema: z.object({
-        // Main block fields
+        order: z.number(),
+        block_type: z.enum(['hero', 'whyNow', 'botGuide', 'englishTrack']),
+
+        // Fields for all blocks
         title: z.string(),
+
+        // Optional fields used by different blocks
         subtitle: z.string().optional(),
-        // Call-to-action fields
         cta_text: z.string().optional(),
         cta_url: z.string().url().optional(),
-        // Visuals
-        visual_alt: z.string().optional(),
-        // A field to control block visibility or type
-        block_type: z.enum(['hero', 'feature', 'courses', 'faq', 'cta']).optional().default('feature'),
+        description: z.string().optional(),
+        tagline: z.string().optional(),
+
+        // Complex fields for lists/cards
+        cards: z.array(z.object({
+            title: z.string(),
+            text: z.string(),
+        })).optional(),
+
+        features: z.array(z.object({
+            icon: z.string(),
+            title: z.string(),
+            text: z.string(),
+        })).optional(),
+
+        list_blocks: z.array(z.object({
+            title: z.string(),
+            items: z.array(z.string()),
+        })).optional(),
     }),
 });
 
 export const collections = {
-    'blocks': contentBlockCollection,
+    'landing-blocks': landingBlocksCollection,
 };
