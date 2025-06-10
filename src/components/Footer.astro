@@ -1,19 +1,151 @@
 ---
-// src/components/Footer.astro
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-background border-t border-border mt-24">
-  <div class="container mx-auto px-6 py-8 text-center text-text/60">
-    <p>© {currentYear} Accept School. Все права защищены.</p>
-    <div class="mt-4 flex justify-center space-x-6">
-      <a href="https://t.me/YourTelegramBot" class="hover:text-primary"
-        >Telegram Бот</a
-      >
-      <a href="https://t.me/AcceptSchoolSupport" class="hover:text-primary"
-        >Поддержка</a
-      >
-      <a href="#" class="hover:text-primary">Политика конфиденциальности</a>
+<footer>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h4>Контакты</h4>
+        <ul>
+          <li>
+            <a href="mailto:contact@accept-school.ru"
+              >contact@accept-school.ru</a
+            >
+          </li>
+          <!-- <li><a href="tel:+70001234567">+7 (000) 123-45-67</a></li> -->
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Ссылки</h4>
+        <ul>
+          <li>
+            <a href="https://accept-school.ru" target="_blank"
+              >О платформе Accept</a
+            >
+          </li>
+          <li><a href="/privacy-policy">Политика конфиденциальности</a></li>
+          <li><a href="/terms-of-service">Пользовательское соглашение</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Мы в соцсетях</h4>
+        <div class="social-links">
+          <a href="#" aria-label="VK" target="_blank">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
+              ><path
+                d="M13.16,18.94h1.43c0.81,0,1.22-0.4,1.13-1.2l-0.29-2.74c-0.05-0.42,0.18-0.64,0.6-0.64h2.48c1,0,1.4-0.53,1.18-1.44l-0.7-2.88c-0.22-0.9-0.78-1.27-1.58-1.27h-3.5c-0.8,0-1.13,0.38-1.31,1.11l-1.42,6.24C12.45,18.56,12.7,18.94,13.16,18.94z M8.23,6.94h2.42c0.76,0,1.13,0.42,1.27,1.11l0.7,2.88c0.22,0.9,0.05,1.27-0.6,1.27H9.54c-0.76,0-1.13-0.42-1.27-1.11L7.57,8.21C7.43,7.36,7.6,6.94,8.23,6.94z M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z"
+              ></path></svg
+            >
+          </a>
+          <a href="#" aria-label="Telegram" target="_blank">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
+              ><path
+                d="M9.78,18.65l.28-4.23l7.02-6.82c0.33-0.32-0.18-0.5-0.58-0.31l-8.52,3.26c-0.42,0.16-0.41,0.41-0.02,0.52l2.69,0.74l6.03-3.76c0.23-0.14,0.44,0.06,0.24,0.22l-4.93,4.52l-0.33,4.69c0.4,0,0.58-0.18,0.81-0.41l1.99-1.93l3.98,2.96c0.73,0.54,1.24,0.26,1.43-0.64l2.21-10.43c0.24-1.08-0.42-1.55-1.2-1.22L3.81,10.08c-1.03,0.4-1.02,0.98-0.12,1.25l3.56,1.11l8.1-5.01c0.23-0.14,0.44,0.06,0.24,0.22l-6.5,5.85l0.01,0.01z"
+              ></path></svg
+            >
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="copyright">
+        © Accept School, {currentYear}. Все права защищены.
+      </p>
     </div>
   </div>
 </footer>
+
+<style>
+  footer {
+    background-color: var(--card-bg-color);
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 0 2rem 0;
+    margin-top: 5rem; /* Add space above the footer */
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-column h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-column a {
+    text-decoration: none;
+    color: var(--text-color);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer-column a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-links a {
+    opacity: 0.7;
+  }
+  .social-links a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    text-align: center;
+    transition: border-color 0.3s ease;
+  }
+
+  .copyright {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.6;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .footer-column ul {
+      align-items: center;
+    }
+    .social-links {
+      justify-content: center;
+    }
+  }
+</style>

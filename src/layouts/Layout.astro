@@ -1,13 +1,8 @@
 ---
-// src/layouts/Layout.astro
+// File: src/layouts/Layout.astro
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
-import "../styles/global.css"; // <-- ADD THIS LINE
-
-interface Props {
-  title: string;
-}
+import "../styles/theme.css"; // Import the theme variables
 
 const { title } = Astro.props;
 ---
@@ -16,34 +11,37 @@ const { title } = Astro.props;
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Accept School - Твой IT-старт в одно касание!"
-    />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-    <ViewTransitions />
+
+    <!-- This inline script runs before the page loads to prevent theme flashing -->
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    </script>
   </head>
-  <body
-    class="bg-white dark:bg-background text-gray-800 dark:text-text font-sans"
-  >
+  <body>
     <Header />
     <main>
       <slot />
+      <!-- Your page content will go here -->
     </main>
     <Footer />
-    <style is:global>
-      /* Add any global styles here */
-      :root {
-        color-scheme: light;
-      }
-      :root.dark {
-        color-scheme: dark;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
   </body>
 </html>

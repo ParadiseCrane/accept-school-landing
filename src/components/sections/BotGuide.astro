@@ -1,0 +1,117 @@
+<section class="bot-guide-container">
+  <div class="content-wrapper">
+    <h2>Accept School + Telegram-бот = твой персональный IT-гид</h2>
+    <p class="description">
+      Забудь о скучных анкетах! Наш умный Telegram-бот 🤖 <a href="#"
+        >@AcceptSchoolBot</a
+      > сам расспросит тебя о целях и интересах и подберет идеальный курс. Это как
+      персональный AI-консультант, который всегда под рукой!
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="icon">✨</span>
+        <h3>Твой личный AI-помощник на платформе</h3>
+        <p>Застрял? AI-подсказки помогут понять, а не списать.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🇬🇧/🇷🇺</span>
+        <h3>Учись на русском ИЛИ на английском</h3>
+        <p>Курсы мирового уровня – выбирай язык сам!</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🛡️</span>
+        <h3>AI-антиплагиат</h3>
+        <p>Мы за честные знания и твои собственные проекты.</p>
+      </div>
+    </div>
+
+    <a href="#" class="cta-button"> Пообщайся с ботом и узнай свой IT-путь! </a>
+  </div>
+</section>
+
+<style>
+  .bot-guide-container {
+    background-color: var(--card-bg-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 5rem 2rem;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .content-wrapper h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    opacity: 0.8;
+  }
+  .description a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .description a:hover {
+    text-decoration: underline;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature-card {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: left;
+    transition: background-color 0.3s ease;
+  }
+
+  .feature-card .icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+  }
+  .cta-button:hover {
+    background-color: var(--primary-color-hover);
+  }
+
+  @media (max-width: 900px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

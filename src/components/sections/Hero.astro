@@ -1,0 +1,89 @@
+<section class="hero-container">
+  <div class="hero-content">
+    <h1>IT-карьера на Global-уровне? Начни в Telegram с Accept School! 🚀</h1>
+    <p class="subtitle">
+      Выбери свой идеальный курс по Python, C# или спортивному программированию
+      (и подготовься к ОГЭ!) через нашего умного Telegram-бота. Уникальные курсы
+      на английском с углубленным Tech English и AI-подсказки на платформе
+      Accept ждут тебя!
+    </p>
+    <a href="#" class="cta-button"> 🚀 Начать подбор курса в Telegram! </a>
+  </div>
+  <div class="hero-visual">
+    <!-- This is where your stylish illustration or animation will go. -->
+    <!-- For now, it's a styled placeholder. -->
+    <div class="visual-placeholder">
+      <p>Visual/Animation</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--primary-color-hover);
+  }
+
+  .visual-placeholder {
+    height: 400px;
+    background-color: var(--card-bg-color);
+    border: 1px dashed var(--border-color);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    opacity: 0.5;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  /* On smaller screens, stack the columns */
+  @media (max-width: 900px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-visual {
+      grid-row: 1; /* Move visual to the top on mobile */
+      margin-bottom: 3rem;
+    }
+  }
+</style>

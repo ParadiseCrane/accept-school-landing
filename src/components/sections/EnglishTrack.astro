@@ -1,0 +1,156 @@
+---
+// File: src/components/EnglishTrackSection.astro
+---
+
+<section class="track-container">
+  <div class="track-grid">
+    <div class="text-content">
+      <h2>Be Fluent in Code & English! Твой двойной апгрейд</h2>
+      <p class="tagline">
+        Не просто учи код – думай и говори на языке мирового IT!
+      </p>
+
+      <div class="list-block">
+        <h4>Почему это важно:</h4>
+        <ul>
+          <li>
+            Вся топовая документация, лучшие IT-конференции и сообщества – на
+            английском.
+          </li>
+          <li>
+            Уверенный Tech English – твой пропуск в международные команды и
+            фриланс.
+          </li>
+          <li>
+            Изучение программирования <em>на</em> английском прокачивает оба навыка
+            одновременно!
+          </li>
+        </ul>
+      </div>
+
+      <div class="list-block">
+        <h4>Что такое наш English Track:</h4>
+        <ul>
+          <li>
+            Все учебные материалы, лекции и задания – на актуальном английском
+            языке.
+          </li>
+          <li>
+            <strong>Мега-бонус:</strong> 1-2 еженедельных спец-урока по Tech English.
+          </li>
+          <li>Преподаватели с опытом работы в англоязычной IT-среде.</li>
+        </ul>
+      </div>
+
+      <a href="#" class="cta-button">Хочу учиться на английском!</a>
+    </div>
+
+    <div class="visual-content">
+      <div class="visual-placeholder">
+        <p>Visual: Happy Students</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .track-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .track-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .text-content h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .tagline {
+    font-size: 1.25rem;
+    opacity: 0.8;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .list-block {
+    margin-bottom: 2rem;
+  }
+
+  .list-block h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .list-block ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .list-block li {
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .list-block li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  .cta-button {
+    display: inline-block;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  .cta-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  .visual-placeholder {
+    height: 100%;
+    min-height: 450px;
+    background-color: var(--card-bg-color);
+    border: 1px dashed var(--border-color);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    opacity: 0.5;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  @media (max-width: 900px) {
+    .track-grid {
+      grid-template-columns: 1fr;
+    }
+    .visual-content {
+      margin-top: 3rem;
+    }
+  }
+</style>
