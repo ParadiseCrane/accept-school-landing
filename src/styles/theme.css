@@ -1,0 +1,12 @@
+/* src/styles/theme.css */
+:root {
+    --color-primary: #1e40af;
+    --color-secondary: #64748b;
+    --color-accent: #16a34a;
+}
+
+.dark {
+    --color-primary: #60a5fa;
+    --color-secondary: #cbd5e1;
+    --color-accent: #22c55e;
+}

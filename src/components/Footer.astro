@@ -1,0 +1,19 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-background border-t border-border mt-24">
+  <div class="container mx-auto px-6 py-8 text-center text-text/60">
+    <p>© {currentYear} Accept School. Все права защищены.</p>
+    <div class="mt-4 flex justify-center space-x-6">
+      <a href="https://t.me/YourTelegramBot" class="hover:text-primary"
+        >Telegram Бот</a
+      >
+      <a href="https://t.me/AcceptSchoolSupport" class="hover:text-primary"
+        >Поддержка</a
+      >
+      <a href="#" class="hover:text-primary">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>

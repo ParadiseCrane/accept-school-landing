@@ -1,0 +1,61 @@
+---
+// src/pages/index.astro
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+// 1. Fetch all content blocks and sort them by filename (01, 02, etc.)
+const allBlocks = await getCollection("blocks");
+const sortedBlocks = allBlocks.sort((a, b) => a.slug.localeCompare(b.slug));
+---
+
+<Layout title="Accept School | Твой IT-старт в Telegram">
+  <div class="flex flex-col">
+    {
+      sortedBlocks.map(async (block) => {
+        const { Content } = await block.render();
+        return (
+          <section
+            id={block.slug.substring(3)}
+            class="container mx-auto px-6 py-16 md:py-24"
+          >
+            <div class="max-w-4xl mx-auto text-center">
+              <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+                {block.data.title}
+              </h2>
+              {block.data.subtitle && (
+                <p class="text-lg md:text-xl text-text/80 mb-8">
+                  {block.data.subtitle}
+                </p>
+              )}
+              <div class="prose prose-lg dark:prose-invert max-w-none text-left md:text-center">
+                <Content />
+              </div>
+              {block.data.cta_text && block.data.cta_url && (
+                <div class="mt-10">
+                  <a
+                    href={block.data.cta_url}
+                    target="_blank"
+                    class="bg-success text-white font-bold text-xl px-8 py-4 rounded-xl hover:opacity-90 transition-transform hover:scale-105 inline-block"
+                  >
+                    {block.data.cta_text}
+                  </a>
+                </div>
+              )}
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+</Layout>
+
+<style>
+  @reference "tailwindcss";
+  /* Scoped styles for the index page if needed */
+  /* section:nth-child(odd) {
+    @apply bg-white dark:bg-background;
+  }
+  section:nth-child(even) {
+    @apply bg-gray-50 dark:bg-gray-800/20;
+  } */
+</style>

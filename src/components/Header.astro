@@ -1,0 +1,23 @@
+---
+// src/components/Header.astro
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<header
+  class="bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-border"
+>
+  <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="/" class="text-2xl font-bold text-primary">Accept School</a>
+    <div class="flex items-center space-x-4">
+      <a href="#courses" class="hover:text-primary transition-colors">Курсы</a>
+      <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+      <a
+        href="https://t.me/AcceptSchoolSupport"
+        target="_blank"
+        class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
+        >Поддержка</a
+      >
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
