@@ -1,13 +1,14 @@
 ---
 const { entry } = Astro.props;
-const { title, subtitle, cta_text, cta_url } = entry.data;
+const { title, subtitle, cta_text } = entry.data;
+import { siteConfig } from "../../site.config";
 ---
 
 <section class="hero-container">
   <div class="hero-content">
     <h1>{title}</h1>
     <p class="subtitle">{subtitle}</p>
-    <a href={cta_url} class="cta-button">{cta_text}</a>
+    <a href={siteConfig.links.telegramBot} class="cta-button">{cta_text}</a>
   </div>
   <div class="hero-visual">
     <div class="visual-placeholder"><p>Visual/Animation</p></div>

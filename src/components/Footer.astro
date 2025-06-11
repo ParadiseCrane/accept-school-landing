@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from "../site.config";
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -9,8 +11,8 @@ const currentYear = new Date().getFullYear();
         <h4>Контакты</h4>
         <ul>
           <li>
-            <a href="mailto:contact@accept-school.ru"
-              >contact@accept-school.ru</a
+            <a href={`mailto:${siteConfig.contact.email}`}
+              >{siteConfig.contact.email}</a
             >
           </li>
           <!-- <li><a href="tel:+70001234567">+7 (000) 123-45-67</a></li> -->
@@ -21,7 +23,7 @@ const currentYear = new Date().getFullYear();
         <h4>Ссылки</h4>
         <ul>
           <li>
-            <a href="https://accept-school.ru" target="_blank"
+            <a href={siteConfig.links.platformSite} target="_blank"
               >О платформе Accept</a
             >
           </li>
@@ -33,14 +35,18 @@ const currentYear = new Date().getFullYear();
       <div class="footer-column">
         <h4>Мы в соцсетях</h4>
         <div class="social-links">
-          <a href="#" aria-label="VK" target="_blank">
+          <a href={siteConfig.links.vk} aria-label="VK" target="_blank">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
               ><path
                 d="M13.16,18.94h1.43c0.81,0,1.22-0.4,1.13-1.2l-0.29-2.74c-0.05-0.42,0.18-0.64,0.6-0.64h2.48c1,0,1.4-0.53,1.18-1.44l-0.7-2.88c-0.22-0.9-0.78-1.27-1.58-1.27h-3.5c-0.8,0-1.13,0.38-1.31,1.11l-1.42,6.24C12.45,18.56,12.7,18.94,13.16,18.94z M8.23,6.94h2.42c0.76,0,1.13,0.42,1.27,1.11l0.7,2.88c0.22,0.9,0.05,1.27-0.6,1.27H9.54c-0.76,0-1.13-0.42-1.27-1.11L7.57,8.21C7.43,7.36,7.6,6.94,8.23,6.94z M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z"
               ></path></svg
             >
           </a>
-          <a href="#" aria-label="Telegram" target="_blank">
+          <a
+            href={siteConfig.links.telegramSupport}
+            aria-label="Telegram"
+            target="_blank"
+          >
             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
               ><path
                 d="M9.78,18.65l.28-4.23l7.02-6.82c0.33-0.32-0.18-0.5-0.58-0.31l-8.52,3.26c-0.42,0.16-0.41,0.41-0.02,0.52l2.69,0.74l6.03-3.76c0.23-0.14,0.44,0.06,0.24,0.22l-4.93,4.52l-0.33,4.69c0.4,0,0.58-0.18,0.81-0.41l1.99-1.93l3.98,2.96c0.73,0.54,1.24,0.26,1.43-0.64l2.21-10.43c0.24-1.08-0.42-1.55-1.2-1.22L3.81,10.08c-1.03,0.4-1.02,0.98-0.12,1.25l3.56,1.11l8.1-5.01c0.23-0.14,0.44,0.06,0.24,0.22l-6.5,5.85l0.01,0.01z"
@@ -52,7 +58,7 @@ const currentYear = new Date().getFullYear();
     </div>
     <div class="footer-bottom">
       <p class="copyright">
-        © Accept School, {currentYear}. Все права защищены.
+        © {siteConfig.companyName}, {currentYear}. Все права защищены.
       </p>
     </div>
   </div>

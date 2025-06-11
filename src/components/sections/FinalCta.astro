@@ -1,0 +1,53 @@
+---
+const { entry } = Astro.props;
+const { title, subtitle, cta_text, cta_url, secondary_text } = entry.data;
+---
+
+<section class="final-cta-container">
+  <h2>{title}</h2>
+  <p class="subtitle">{subtitle}</p>
+  <a href={cta_url} class="cta-button">{cta_text}</a>
+  <p class="secondary-text" set:html={secondary_text} />
+</section>
+<style>
+  .final-cta-container {
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+  h2 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    opacity: 0.8;
+    margin-bottom: 2.5rem;
+  }
+  .cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  .cta-button:hover {
+    background-color: var(--primary-color-hover);
+    transform: scale(1.05);
+  }
+  .secondary-text {
+    margin-top: 1.5rem;
+    opacity: 0.7;
+  }
+  .secondary-text a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  .secondary-text a:hover {
+    text-decoration: underline;
+  }
+</style>

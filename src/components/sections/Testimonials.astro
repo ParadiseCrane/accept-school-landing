@@ -1,0 +1,106 @@
+---
+const { entry } = Astro.props;
+const { title, description, stats, reviews } = entry.data;
+---
+
+<section class="testimonials-container">
+  <div class="content-wrapper">
+    <h2>{title}</h2>
+    <p class="description">{description}</p>
+    <div class="stats-grid">
+      {
+        stats.map((stat: { icon: string; text: string }) => (
+          <div class="stat-card">
+            <span>{stat.icon}</span> {stat.text}
+          </div>
+        ))
+      }
+    </div>
+    <div class="reviews-grid">
+      {
+        reviews.map(
+          (review: { quote: string; author: string; role: string }) => (
+            <figure class="review-card">
+              <blockquote>"{review.quote}"</blockquote>
+              <figcaption>
+                <strong>{review.author}</strong>
+                <span>{review.role}</span>
+              </figcaption>
+            </figure>
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+<style>
+  .testimonials-container {
+    background-color: var(--card-bg-color);
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+  .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .description {
+    font-size: 1.125rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    opacity: 0.8;
+  }
+  .stats-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .stat-card {
+    background: var(--bg-color);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    text-align: left;
+  }
+  .review-card {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 16px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  blockquote {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 0 0 1.5rem 0;
+    font-style: italic;
+    flex-grow: 1;
+  }
+  figcaption strong {
+    display: block;
+    font-size: 1.1rem;
+  }
+  figcaption span {
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+  @media (max-width: 768px) {
+    .reviews-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

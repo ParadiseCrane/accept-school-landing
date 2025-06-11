@@ -7,12 +7,24 @@ import HeroSection from "../components/sections/Hero.astro";
 import WhyNowSection from "../components/sections/WhyNow.astro";
 import BotGuideSection from "../components/sections/BotGuide.astro";
 import EnglishTrackSection from "../components/sections/EnglishTrack.astro";
+import CoursesSection from "../components/sections/Courses.astro";
+import AdvantagesSection from "../components/sections/Advantages.astro";
+import HowItWorksSection from "../components/sections/HowItWorks.astro";
+import TestimonialsSection from "../components/sections/Testimonials.astro";
+import FinalCtaSection from "../components/sections/FinalCta.astro";
+import FaqSection from "../components/sections/Faq.astro";
 
 const blockComponents = {
   hero: HeroSection,
   whyNow: WhyNowSection,
   botGuide: BotGuideSection,
   englishTrack: EnglishTrackSection,
+  courses: CoursesSection,
+  advantages: AdvantagesSection,
+  howItWorks: HowItWorksSection,
+  testimonials: TestimonialsSection,
+  finalCta: FinalCtaSection,
+  faq: FaqSection,
 };
 
 const allBlocks = await getCollection("landing-blocks");
@@ -21,15 +33,16 @@ const sortedBlocks = allBlocks.sort((a, b) => a.data.order - b.data.order);
 
 <Layout title="Accept School - Твой IT-старт!">
   {
-    sortedBlocks.map((entry) => {
-      const Component = blockComponents[entry.data.block_type];
-      return <Component entry={entry} />;
+    sortedBlocks.map((blockEntry) => {
+      const Component = blockComponents[blockEntry.data.block_type];
+      if (!Component) {
+        return (
+          <p>
+            Component for block type "{blockEntry.data.block_type}" not found.
+          </p>
+        );
+      }
+      return <Component entry={blockEntry} />;
     })
   }
-
-  <!-- <WhyNowSection /> -->
-
-  <!-- <BotGuideSection /> -->
-
-  <!-- <EnglishTrackSection /> -->
 </Layout>
