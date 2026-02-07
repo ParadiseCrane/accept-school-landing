@@ -1,0 +1,75 @@
+---
+// Call to Action section
+---
+
+<section class="cta-section">
+	<div class="container">
+		<div class="cta-content">
+			<h2>Готовы начать обучение?</h2>
+			<p>Присоединяйтесь к сотням успешных студентов Accept School</p>
+			<div class="cta-buttons">
+				<a href="#courses" class="btn-primary">Выбрать курс</a>
+				<a href="#" class="btn-secondary">Задать вопрос</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.cta-section {
+		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+		padding: 6rem 0;
+	}
+
+	.cta-content {
+		text-align: center;
+	}
+
+	.cta-content h2 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin-bottom: 1rem;
+	}
+
+	.cta-content p {
+		font-size: 1.3rem;
+		margin-bottom: 2.5rem;
+		opacity: 0.9;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+	}
+
+	.cta-section .btn-primary {
+		background: white;
+		color: var(--primary);
+	}
+
+	.cta-section .btn-secondary {
+		border-color: white;
+		color: white;
+	}
+
+	.cta-section .btn-secondary:hover {
+		background: white;
+		color: var(--primary);
+	}
+
+	@media (max-width: 768px) {
+		.cta-content h2 {
+			font-size: 2rem;
+		}
+
+		.cta-content p {
+			font-size: 1.1rem;
+		}
+
+		.cta-buttons {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+</style>

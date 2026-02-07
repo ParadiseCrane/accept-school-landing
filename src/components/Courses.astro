@@ -1,0 +1,49 @@
+---
+import CourseCard from "./CourseCard.astro";
+
+const courses = [
+	{
+		icon: "🐍",
+		title: "Modern Python",
+		description:
+			"Изучите Python 3.12+ с современными инструментами: uv, ruff, mypy. Async/await, type hints, dataclasses.",
+		tags: ["Python 3.12+", "Type Safety", "Async"],
+		visualType: "terminal" as const,
+	},
+	{
+		icon: "💻",
+		title: "Алгоритмы и структуры данных",
+		description:
+			"Алгоритмы, структуры данных, системное программирование. Глубокое понимание основ.",
+		tags: ["Алгоритмы", "Данные", "Системы"],
+		visualType: "sort" as const,
+	},
+];
+---
+
+<section id="courses" class="section">
+	<div class="container">
+		<div class="section-header">
+			<h2>Курсы разработки</h2>
+			<p>Практические программы с современными технологиями</p>
+		</div>
+
+		<div class="courses-grid">
+			{courses.map((course) => <CourseCard {...course} />)}
+		</div>
+	</div>
+</section>
+
+<style>
+	.courses-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: 2rem;
+	}
+
+	@media (max-width: 768px) {
+		.courses-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -1,0 +1,72 @@
+---
+interface Props {
+	question: string;
+	answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div class="faq-item">
+	<div class="faq-question">
+		<h3>{question}</h3>
+		<span class="faq-icon">+</span>
+	</div>
+	<div class="faq-answer">
+		<p>{answer}</p>
+	</div>
+</div>
+
+<style>
+	.faq-item {
+		background: var(--bg-dark);
+		border: 1px solid var(--border);
+		border-radius: 12px;
+		margin-bottom: 1rem;
+		overflow: hidden;
+	}
+
+	.faq-question {
+		padding: 1.5rem 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.faq-question:hover {
+		background: rgba(99, 102, 241, 0.05);
+	}
+
+	.faq-question h3 {
+		font-size: 1.1rem;
+		font-weight: 600;
+	}
+
+	.faq-icon {
+		font-size: 1.5rem;
+		color: var(--primary);
+		transition: transform 0.3s ease;
+	}
+
+	.faq-item.active .faq-icon {
+		transform: rotate(45deg);
+	}
+
+	.faq-answer {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.3s ease;
+	}
+
+	.faq-item.active .faq-answer {
+		max-height: 500px;
+	}
+
+	.faq-answer p {
+		padding: 0 2rem 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+</style>

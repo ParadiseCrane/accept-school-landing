@@ -1,0 +1,147 @@
+---
+import Logo from "./Logo.astro";
+
+const navLinks = [
+	{ href: "#courses", label: "Курсы" },
+	{ href: "#features", label: "Особенности" },
+	{ href: "#testimonials", label: "Отзывы" },
+	{ href: "#faq", label: "FAQ" },
+];
+---
+
+<nav id="navbar">
+	<div class="nav-container">
+		<Logo />
+
+		<ul class="nav-links">
+			{navLinks.map((link) => (
+				<li>
+					<a href={link.href}>{link.label}</a>
+				</li>
+			))}
+			<li>
+				<a href="#" class="cta-button">Начать обучение</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<style>
+	nav {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		background: rgba(15, 23, 42, 0.8);
+		backdrop-filter: blur(20px);
+		border-bottom: 1px solid var(--border);
+		z-index: 1000;
+		transition: all 0.3s ease;
+	}
+
+	nav.scrolled {
+		background: rgba(15, 23, 42, 0.95);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+	}
+
+	.nav-container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 1.2rem 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2.5rem;
+		list-style: none;
+		align-items: center;
+	}
+
+	.nav-links a {
+		color: var(--text-muted);
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 0.95rem;
+		transition: color 0.3s ease;
+		position: relative;
+	}
+
+	.nav-links a:hover {
+		color: var(--text-light);
+	}
+
+	.nav-links a::after {
+		content: "";
+		position: absolute;
+		bottom: -5px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+		transition: width 0.3s ease;
+	}
+
+	.nav-links a:hover::after {
+		width: 100%;
+	}
+
+	.cta-button {
+		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+		color: white;
+		padding: 0.75rem 1.75rem;
+		border-radius: 12px;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 0.95rem;
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+	}
+
+	.cta-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+	}
+
+	.cta-button::after {
+		display: none;
+	}
+
+	@media (max-width: 768px) {
+		.nav-links {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	const navbar = document.getElementById("navbar");
+
+	if (navbar) {
+		window.addEventListener("scroll", () => {
+			if (window.scrollY > 100) {
+				navbar.classList.add("scrolled");
+			} else {
+				navbar.classList.remove("scrolled");
+			}
+		});
+	}
+
+	// Smooth scroll for all anchor links
+	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+		anchor.addEventListener("click", function (e) {
+			const href = this.getAttribute("href");
+			if (href === "#") return;
+
+			e.preventDefault();
+			const target = document.querySelector(href);
+			if (target) {
+				target.scrollIntoView({
+					behavior: "smooth",
+					block: "start",
+				});
+			}
+		});
+	});
+</script>

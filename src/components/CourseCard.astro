@@ -1,0 +1,98 @@
+---
+interface Props {
+	icon: string;
+	title: string;
+	description: string;
+	tags: string[];
+	visualType?: "terminal" | "browser" | "sort";
+}
+
+const { icon, title, description, tags, visualType } = Astro.props;
+
+import TerminalWindow from "./TerminalWindow.astro";
+import BrowserWindow from "./BrowserWindow.astro";
+import SortVisualization from "./SortVisualization.astro";
+---
+
+<div class="course-card">
+	<div class="course-icon">{icon}</div>
+	<h3>{title}</h3>
+	<p class="course-description">{description}</p>
+	<div class="course-features">
+		{tags.map((tag) => <span class="feature-tag">{tag}</span>)}
+	</div>
+	<div class="course-visual">
+		{visualType === "terminal" && <TerminalWindow />}
+		{visualType === "browser" && <BrowserWindow />}
+		{visualType === "sort" && <SortVisualization />}
+	</div>
+	<a href="#" class="course-link">Подробнее →</a>
+</div>
+
+<style>
+	.course-card {
+		background: var(--bg-dark);
+		border: 1px solid var(--border);
+		border-radius: 20px;
+		padding: 2.5rem;
+		transition: all 0.3s ease;
+	}
+
+	.course-card:hover {
+		transform: translateY(-5px);
+		border-color: var(--primary);
+		box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+	}
+
+	.course-icon {
+		font-size: 3rem;
+		margin-bottom: 1.5rem;
+		display: inline-block;
+	}
+
+	.course-card h3 {
+		font-size: 1.8rem;
+		margin-bottom: 1rem;
+		font-weight: 700;
+	}
+
+	.course-description {
+		color: var(--text-muted);
+		margin-bottom: 1.5rem;
+		line-height: 1.7;
+	}
+
+	.course-features {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		margin-bottom: 2rem;
+	}
+
+	.feature-tag {
+		background: rgba(99, 102, 241, 0.1);
+		color: var(--primary-light);
+		padding: 0.4rem 1rem;
+		border-radius: 8px;
+		font-size: 0.85rem;
+		font-weight: 500;
+	}
+
+	.course-visual {
+		margin: 2rem 0;
+	}
+
+	.course-link {
+		color: var(--primary-light);
+		text-decoration: none;
+		font-weight: 600;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		transition: gap 0.3s ease;
+	}
+
+	.course-link:hover {
+		gap: 1rem;
+	}
+</style>

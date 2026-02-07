@@ -1,44 +1,43 @@
-# Accept School Landing Page
+# Astro Starter Kit: Minimal
 
-This project is a landing page for the Accept online programming school, built with [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and TypeScript.
+```sh
+yarn create astro@latest -- --template minimal
+```
 
-## Project Structure
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-TBW
+## 🚀 Project Structure
 
-## Color Constants and Theming
+Inside of your Astro project, you'll see the following folders and files:
 
-TBW
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-## Content Management
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-TBW
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-## Commands
+Any static assets, like images, can be placed in the `public/` directory.
 
-- `yarn dev`: Starts the local development server with hot-reloading.
-- `yarn build`: Builds the project for production (output to `dist/` folder).
-- `yarn preview`: Starts a local server to preview the built project.
-- `yarn astro ...`: Accesses the Astro CLI (e.g., `yarn astro check` for type checking).
+## 🧞 Commands
 
-## Getting Started
+All commands are run from the root of the project, from a terminal:
 
-1. Install dependencies:
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `yarn install`             | Installs dependencies                            |
+| `yarn dev`             | Starts local dev server at `localhost:4321`      |
+| `yarn build`           | Build your production site to `./dist/`          |
+| `yarn preview`         | Preview your build locally, before deploying     |
+| `yarn astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `yarn astro -- --help` | Get help using the Astro CLI                     |
 
-   ```bash
-   yarn install
-   ```
+## 👀 Want to learn more?
 
-2. Start the development server:
-
-   ```bash
-   yarn dev
-   ```
-
-3. Open [http://localhost:4321](http://localhost:4321) in your browser.
-
-## Customization
-
-TBW
-
----
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
