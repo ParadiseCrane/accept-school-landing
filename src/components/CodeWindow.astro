@@ -14,7 +14,7 @@ const { title = "modern_python.py", rotating = false } = Astro.props;
 			<span></span>
 			<span></span>
 		</div>
-		<span class="code-title">{title}</span>
+		<!-- <span class="code-title">{title}</span> -->
 	</div>
 	<div class="code-body">
 		<pre><code id={rotating ? "rotatingCode" : undefined}><slot>const greeting = "Hello, World!";</slot></code></pre>
@@ -69,17 +69,21 @@ const { title = "modern_python.py", rotating = false } = Astro.props;
 	}
 
 	.code-body {
+		background: rgba(30, 41, 59, 0.8);
 		padding: 2rem;
 		font-family: "JetBrains Mono", monospace;
 	}
 
 	.code-body pre {
 		margin: 0;
+		min-height: 60px;
 	}
-
+	
 	.code-body code {
+		font-family: "JetBrains Mono", monospace;
+		font-size: 1.3rem;
+		font-weight: 600;
 		color: var(--primary-light);
-		font-size: 1.1rem;
 		transition: opacity 0.3s ease;
 	}
 </style>

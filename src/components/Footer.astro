@@ -2,164 +2,213 @@
 import Logo from "./Logo.astro";
 
 const footerSections = [
-	{
-		title: "Курсы",
-		links: [
-			{ label: "Modern Python", href: "#" },
-			{ label: "Web Development", href: "#" },
-			{ label: "Computer Science", href: "#" },
-		],
-	},
-	{
-		title: "Компания",
-		links: [
-			{ label: "О нас", href: "#" },
-			{ label: "Менторы", href: "#" },
-			{ label: "Блог", href: "#" },
-			{ label: "Карьера", href: "#" },
-		],
-	},
-	{
-		title: "Контакты",
-		links: [
-			{ label: "Email: hello@accept.school", href: "#" },
-			{ label: "Telegram: @acceptschool", href: "#" },
-			{ label: "Discord", href: "#" },
-		],
-	},
+  {
+    title: "Курсы",
+    links: [
+      { label: "Алгоритмы и структуры данных", href: "#courses" },
+      { label: "Modern Python", href: "#courses" },
+      { label: "English Track", href: "#english" },
+    ],
+  },
+  {
+    title: "О школе",
+    links: [
+      { label: "Accept Platform", href: "#platform" },
+      { label: "FAQ", href: "#faq" },
+      { label: "Портфолио преподавателя", href: "https://dsomni.ru/" },
+    ],
+  },
+  {
+    title: "Контакты",
+    links: [
+      { label: "Telegram-бот", href: "https://t.me/accept_school_bot" },
+      { label: "Сайт проекта", href: "https://accept-school.ru" },
+      { label: "Платформа", href: "https://code.accept-school.ru" },
+    ],
+  },
 ];
 ---
 
 <footer class="footer">
-	<div class="container">
-		<div class="footer-content">
-			<div class="footer-section">
-				<div class="footer-logo-wrapper">
-					<Logo />
-				</div>
-				<p class="footer-description">Онлайн-школа программирования нового поколения</p>
-			</div>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-logo-wrapper">
+          <Logo hideLogo/>
+        </div>
+        <p class="footer-description">
+          Онлайн-школа программирования для школьников 7-11 классов. Обучаем
+          алгоритмам и современному Python на собственной платформе с
+          возможностью обучения на английском языке.
+        </p>
+        <div class="social-links">
+          <a
+            href="https://t.me/accept_school_bot"
+            target="_blank"
+            title="Telegram"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.241-1.865-.44-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.099.155.232.171.326.016.093.036.305.02.469z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="https://github.com/accept-school"
+            target="_blank"
+            title="GitHub"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
 
-			{
-				footerSections.map((section) => (
-					<div class="footer-section">
-						<h4>{section.title}</h4>
-						<ul class="footer-links">
-							{section.links.map((link) => (
-								<li>
-									<a href={link.href}>{link.label}</a>
-								</li>
-							))}
-						</ul>
-					</div>
-				))
-			}
-		</div>
+      {
+        footerSections.map((section) => (
+          <div class="footer-section">
+            <h4>{section.title}</h4>
+            <ul class="footer-links">
+              {section.links.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
 
-		<div class="footer-bottom">
-			<p>&copy; 2024 Accept School. Все права защищены.</p>
-			<div class="footer-legal">
-				<a href="#">Политика конфиденциальности</a>
-				<a href="#">Условия использования</a>
-			</div>
-		</div>
-	</div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Accept School. Все права защищены.</p>
+    </div>
+  </div>
 </footer>
 
 <style>
-	.footer {
-		background: var(--bg-dark);
-		padding: 4rem 0 2rem;
-		border-top: 1px solid var(--border);
-	}
+  .footer {
+    background: var(--bg-dark);
+    padding: 4rem 0 2rem;
+    border-top: 1px solid var(--border);
+  }
 
-	.footer-content {
-		display: grid;
-		grid-template-columns: 2fr 1fr 1fr 1fr;
-		gap: 3rem;
-		margin-bottom: 3rem;
-	}
+  .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
 
-	.footer-logo-wrapper {
-		margin-bottom: 1rem;
-	}
+  .footer-logo-wrapper {
+    margin-bottom: 1rem;
+  }
 
-	.footer-description {
-		color: var(--text-muted);
-		line-height: 1.7;
-	}
+  .footer-description {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
 
-	.footer-section h4 {
-		font-size: 1.1rem;
-		margin-bottom: 1rem;
-		font-weight: 600;
-	}
+  .footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
 
-	.footer-links {
-		list-style: none;
-	}
+  .footer-links {
+    list-style: none;
+  }
 
-	.footer-links li {
-		margin-bottom: 0.75rem;
-	}
+  .footer-links li {
+    margin-bottom: 0.75rem;
+  }
 
-	.footer-links a {
-		color: var(--text-muted);
-		text-decoration: none;
-		transition: color 0.3s ease;
-	}
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
 
-	.footer-links a:hover {
-		color: var(--primary-light);
-	}
+  .footer-links a:hover {
+    color: var(--primary-light);
+  }
 
-	.footer-bottom {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-top: 2rem;
-		border-top: 1px solid var(--border);
-	}
+  .footer-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
 
-	.footer-bottom p {
-		color: var(--text-muted);
-	}
+  .footer-bottom p {
+    color: var(--text-muted);
+  }
 
-	.footer-legal {
-		display: flex;
-		gap: 2rem;
-	}
+  .footer-legal {
+    display: flex;
+    gap: 2rem;
+  }
 
-	.footer-legal a {
-		color: var(--text-muted);
-		text-decoration: none;
-		font-size: 0.9rem;
-	}
+  .footer-legal a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
 
-	.footer-legal a:hover {
-		color: var(--primary-light);
-	}
+  .footer-legal a:hover {
+    color: var(--primary-light);
+  }
 
-	@media (max-width: 1024px) {
-		.footer-content {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
 
-	@media (max-width: 768px) {
-		.footer-content {
-			grid-template-columns: 1fr;
-		}
+  .social-links a {
+    width: 40px;
+    height: 40px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-light);
+    transition: all 0.3s ease;
+  }
 
-		.footer-bottom {
-			flex-direction: column;
-			gap: 1rem;
-			text-align: center;
-		}
+  .social-links a:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+  }
 
-		.footer-legal {
-			flex-direction: column;
-			gap: 0.5rem;
-		}
-	}
+  @media (max-width: 1024px) {
+    .footer-content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .footer-legal {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
 </style>

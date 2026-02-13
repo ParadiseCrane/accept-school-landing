@@ -1,0 +1,105 @@
+<section class="platform section" id="platform">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Accept Platform</span>
+      <h2>Собственная платформа</h2>
+      <p>
+        Мы разработали продвинутую платформу для обучения программированию с
+        автоматической проверкой кода и детальным фидбеком
+      </p>
+    </div>
+    <div class="platform-showcase">
+      <div class="platform-feature">
+        <div class="feature-icon">⚡</div>
+        <h4>Мгновенная проверка</h4>
+        <p>
+          Отправляйте решения и получайте результаты проверки в режиме реального
+          времени. Детальный фидбек поможет быстрее исправить ошибки.
+        </p>
+      </div>
+      <div class="platform-feature">
+        <div class="feature-icon">🎯</div>
+        <h4>Автоматическое тестирование</h4>
+        <p>
+          Ваш код проверяется на множестве тестовых случаев, включая граничные
+          значения и edge cases. Как в настоящих code interviews.
+        </p>
+      </div>
+      <div class="platform-feature">
+        <div class="feature-icon">📊</div>
+        <h4>Отслеживание прогресса</h4>
+        <p>
+          Следите за своими достижениями, смотрите статистику решённых задач и
+          анализируйте свой рост как разработчика.
+        </p>
+      </div>
+      <div class="platform-feature">
+        <div class="feature-icon">💻</div>
+        <h4>Современный интерфейс</h4>
+        <p>
+          Удобный редактор кода с подсветкой синтаксиса, автодополнением и всеми
+          функциями профессиональной IDE.
+        </p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 3rem">
+      <a
+        href="https://code.accept-school.ru/"
+        target="_blank"
+        class="btn-primary"
+      >
+        Перейти на платформу
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .platform {
+    background: var(--bg-dark);
+  }
+
+  .platform-showcase {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .platform-feature {
+    background: var(--bg-darker);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .platform-feature:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-1);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .platform-feature h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .platform-feature p {
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+</style>
