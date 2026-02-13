@@ -1,0 +1,166 @@
+---
+import SortViz from "./SortViz.astro";
+import TerminalViz from "./TerminalViz.astro";
+
+const courses = [
+  {
+    type: "algorithms",
+    title: "Алгоритмы и структуры данных",
+    description:
+      "Фундаментальный курс для понимания основ computer science. Изучите алгоритмы сортировки, поиска, работу с графами, деревьями и другими структурами данных.",
+    items: [
+      "Анализ сложности алгоритмов (Big O)",
+      "Классические алгоритмы сортировки и поиска",
+      "Работа с деревьями, графами и хеш-таблицами",
+      "Динамическое программирование",
+      "Практические задачи с автопроверкой",
+    ],
+    element: SortViz,
+  },
+  {
+    type: "python",
+    title: "Modern Python",
+    description:
+      "Изучите современный Python с использованием актуальных инструментов: uv, ruff, mypy. Освойте профессиональную разработку и лучшие практики индустрии.",
+    items: [
+      "Современные инструменты разработки (uv, ruff)",
+      "Type hints и статическая типизация (mypy)",
+      "FastAPI и асинхронное программирование",
+      "Работа с базами данных и API",
+      "Реальные проекты и code review",
+    ],
+    element: TerminalViz,
+  },
+];
+---
+
+<section id="courses" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Наши курсы</span>
+      <h2>Программы обучения</h2>
+      <p>
+        Два ключевых курса для формирования фундаментальных навыков
+        программирования и современной разработки
+      </p>
+    </div>
+
+    {
+      courses.map((e) => {
+        return (
+          <div class={`course-card ${e.type}`}>
+            <div class="course-content">
+              <e.element />
+              <div class="course-info">
+                <h3>{e.title}</h3>
+                <p>{e.description}</p>
+                <ul class="course-features">
+                  {e.items.map((li) => {
+                    return <li>{li}</li>;
+                  })}
+                </ul>
+                <a
+                  href="https://t.me/accept_school_bot"
+                  target="_blank"
+                  class="btn-primary"
+                >
+                  Записаться на курс
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  #courses {
+    background: var(--bg-dark);
+  }
+
+  .course-card {
+    background: var(--bg-darker);
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .course-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary);
+  }
+
+  .course-card.algorithms::before {
+    background: var(--gradient-1);
+  }
+
+  .course-card.python::before {
+    background: var(--gradient-2);
+  }
+
+  .course-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .course-info h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .course-info p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .course-features {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .course-features li {
+    padding: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+
+  .course-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+</style>

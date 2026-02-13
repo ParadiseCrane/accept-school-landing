@@ -1,0 +1,111 @@
+<div class="sort-container">
+  <div class="sort-visualization" id="sortViz"></div>
+</div>
+
+<style>
+  .sort-container {
+    background: var(--code-bg);
+    border-radius: 16px;
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    position: relative;
+    min-height: 350px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    order: 2;
+  }
+
+  .sort-visualization {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    height: 250px;
+    width: 100%;
+
+    .bar {
+      width: 40px;
+      background: var(--gradient-1);
+      border-radius: 6px 6px 0 0;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .bar.comparing {
+      background: var(--gradient-2);
+      transform: scale(1.05);
+    }
+
+    .bar.sorted {
+      background: var(--gradient-3);
+    }
+  }
+</style>
+
+<script>
+  function createBars(containerId: any) {
+    const container = document.getElementById(containerId);
+    if (!container) return null;
+
+    const heights = [60, 140, 90, 200, 170, 100, 190, 120, 180, 80];
+    container.innerHTML = "";
+
+    heights.forEach((height) => {
+      const bar = document.createElement("div");
+      bar.className = "bar";
+      bar.style.height = height + "px";
+      container.appendChild(bar);
+    });
+
+    return {
+      bars: container.querySelectorAll(".bar"),
+      heights: [...heights],
+    };
+  }
+
+  async function bubbleSortAnimation(containerId: any) {
+    const result = createBars(containerId);
+    if (!result) return;
+
+    const { bars, heights } = result;
+    const n = heights.length;
+
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+        bars[j].classList.add("comparing");
+        bars[j + 1].classList.add("comparing");
+
+        await new Promise((resolve) => setTimeout(resolve, 400));
+
+        if (heights[j] > heights[j + 1]) {
+          [heights[j], heights[j + 1]] = [heights[j + 1], heights[j]];
+          // @ts-expect-error
+          bars[j].style.height = heights[j] + "px";
+          // @ts-expect-error
+          bars[j + 1].style.height = heights[j + 1] + "px";
+        }
+
+        bars[j].classList.remove("comparing");
+        bars[j + 1].classList.remove("comparing");
+      }
+      bars[n - i - 1].classList.add("sorted");
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setTimeout(() => bubbleSortAnimation(containerId), 1000);
+  }
+
+  const bubbleFunction = () => {
+    bubbleSortAnimation("sortViz");
+  };
+
+  // Initialize animations
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bubbleFunction);
+  } else {
+    bubbleFunction();
+  }
+</script>

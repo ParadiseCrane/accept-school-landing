@@ -1,3 +1,21 @@
+---
+const items = [
+  {
+    title: "🌍 Международный уровень",
+    description: "Готовьтесь к работе в международных компаниях с первого дня",
+  },
+  {
+    title: "💬 Развитие языка",
+    description:
+      "Групповые занятия для развития беглого технического английского",
+  },
+  {
+    title: "📚 Оригинальная терминология",
+    description: "Изучайте программирование на языке мировой индустрии",
+  },
+];
+---
+
 <section class="english-track section" id="english">
   <div class="container">
     <div class="english-content">
@@ -15,20 +33,18 @@
           занятия для развития беглой речи.
         </p>
         <div class="english-benefits">
-          <div class="benefit-item">
-            <h4>🌍 Международный уровень</h4>
-            <p>Готовьтесь к работе в международных компаниях с первого дня</p>
-          </div>
-          <div class="benefit-item">
-            <h4>💬 Развитие языка</h4>
-            <p>
-              Групповые занятия для развития беглого технического английского
-            </p>
-          </div>
-          <div class="benefit-item">
-            <h4>📚 Оригинальная терминология</h4>
-            <p>Изучайте программирование на языке мировой индустрии</p>
-          </div>
+          {
+            items.map((e) => {
+              return (
+                <div class="benefit-item">
+                  <h4>{e.title}</h4>
+                  <p>
+                    {e.description}
+                  </p>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
       <div class="code-preview">

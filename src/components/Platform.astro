@@ -1,3 +1,32 @@
+---
+const features = [
+  {
+    title: "Мгновенная проверка",
+    icon: "⚡",
+    description:
+      "Отправляйте решения и получайте результаты проверки в режиме реального времени. Детальный фидбек поможет быстрее исправить ошибки.",
+  },
+  {
+    title: "Автоматическое тестирование",
+    icon: "🎯",
+    description:
+      "Ваш код проверяется на множестве тестовых случаев, включая граничные значения и edge cases. Как в настоящих code interviews.",
+  },
+  {
+    title: "Отслеживание прогресса",
+    icon: "📊",
+    description:
+      "Следите за своими достижениями, смотрите статистику решённых задач и анализируйте свой рост как разработчика.",
+  },
+  {
+    title: "Современный интерфейс",
+    icon: "💻",
+    description:
+      "Удобный редактор кода с подсветкой синтаксиса, автодополнением и всеми функциями профессиональной IDE.",
+  },
+];
+---
+
 <section class="platform section" id="platform">
   <div class="container">
     <div class="section-header">
@@ -9,38 +38,17 @@
       </p>
     </div>
     <div class="platform-showcase">
-      <div class="platform-feature">
-        <div class="feature-icon">⚡</div>
-        <h4>Мгновенная проверка</h4>
-        <p>
-          Отправляйте решения и получайте результаты проверки в режиме реального
-          времени. Детальный фидбек поможет быстрее исправить ошибки.
-        </p>
-      </div>
-      <div class="platform-feature">
-        <div class="feature-icon">🎯</div>
-        <h4>Автоматическое тестирование</h4>
-        <p>
-          Ваш код проверяется на множестве тестовых случаев, включая граничные
-          значения и edge cases. Как в настоящих code interviews.
-        </p>
-      </div>
-      <div class="platform-feature">
-        <div class="feature-icon">📊</div>
-        <h4>Отслеживание прогресса</h4>
-        <p>
-          Следите за своими достижениями, смотрите статистику решённых задач и
-          анализируйте свой рост как разработчика.
-        </p>
-      </div>
-      <div class="platform-feature">
-        <div class="feature-icon">💻</div>
-        <h4>Современный интерфейс</h4>
-        <p>
-          Удобный редактор кода с подсветкой синтаксиса, автодополнением и всеми
-          функциями профессиональной IDE.
-        </p>
-      </div>
+      {
+        features.map((e) => {
+          return (
+            <div class="platform-feature">
+              <div class="feature-icon">{e.icon}</div>
+              <h4>{e.title}</h4>
+              <p>{e.description}</p>
+            </div>
+          );
+        })
+      }
     </div>
     <div style="text-align: center; margin-top: 3rem">
       <a

@@ -1,24 +1,38 @@
+---
+const statItems = [
+  {
+    title: "2",
+    description: "Языка обучения: русский и английский",
+  },
+  {
+    title: "100%",
+    description: "Практические задания на собственной платформе",
+  },
+  {
+    title: "24/7",
+    description: "Доступ к материалам и проверке кода",
+  },
+];
+---
+
 <section class="stats">
   <div class="container">
     <div class="stats-grid">
-      <div class="stat-item">
-        <h3>2</h3>
-        <p>Языка обучения: русский и английский</p>
-      </div>
-      <div class="stat-item">
-        <h3>100%</h3>
-        <p>Практические задания на собственной платформе</p>
-      </div>
-      <div class="stat-item">
-        <h3>24/7</h3>
-        <p>Доступ к материалам и проверке кода</p>
-      </div>
+      {
+        statItems.map((e) => {
+          return (
+            <div class="stat-item">
+              <h3>{e.title}</h3>
+              <p>{e.description}</p>
+            </div>
+          );
+        })
+      }
     </div>
   </div>
 </section>
 
 <style>
-  
   .stats {
     padding: 5rem 0;
     background: linear-gradient(
