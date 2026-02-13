@@ -1,9 +1,14 @@
 ---
+import SectionLabel from "../SectionLabel.astro";
 import SortViz from "./SortViz.astro";
 import TerminalViz from "./TerminalViz.astro";
 
-const courses = [
-  {
+const content = {
+  label: "Наши курсы",
+  title: "Программы обучения",
+  description: "Два ключевых курса для формирования фундаментальных навыков программирования и современной разработки",
+  courses: [
+    {
     type: "algorithms",
     title: "Алгоритмы и структуры данных",
     description:
@@ -30,23 +35,23 @@ const courses = [
       "Реальные проекты и code review",
     ],
     element: TerminalViz,
-  },
-];
+  }
+  ]
+}
 ---
 
 <section id="courses" class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">Наши курсы</span>
-      <h2>Программы обучения</h2>
+      <SectionLabel label={content.label}/>
+      <h2>{content.title}</h2>
       <p>
-        Два ключевых курса для формирования фундаментальных навыков
-        программирования и современной разработки
+        {content.description}
       </p>
     </div>
 
     {
-      courses.map((e) => {
+      content.courses.map((e) => {
         return (
           <div class={`course-card ${e.type}`}>
             <div class="course-content">

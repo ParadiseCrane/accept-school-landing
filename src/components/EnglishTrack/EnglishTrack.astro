@@ -1,5 +1,12 @@
 ---
-const items = [
+import SectionLabel from "../SectionLabel.astro";
+import CodePreview from "./CodePreview.astro";
+
+const content = {
+  label: "English Track",
+  title: "Учитесь на английском",
+  description: "Уникальная возможность изучать программирование на английском языке. Все занятия проводятся на английском, плюс дополнительные групповые занятия для развития беглой речи.",
+  items: [
   {
     title: "🌍 Международный уровень",
     description: "Готовьтесь к работе в международных компаниях с первого дня",
@@ -13,7 +20,8 @@ const items = [
     title: "📚 Оригинальная терминология",
     description: "Изучайте программирование на языке мировой индустрии",
   },
-];
+]
+}
 ---
 
 <section class="english-track section" id="english">
@@ -24,17 +32,15 @@ const items = [
           class="section-header"
           style="text-align: left; margin-bottom: 2rem;"
         >
-          <span class="section-label">English Track</span>
-          <h3>Учитесь на английском</h3>
+          <SectionLabel label={content.label}/>
+          <h3>{content.title}</h3>
         </div>
         <p>
-          Уникальная возможность изучать программирование на английском языке.
-          Все занятия проводятся на английском, плюс дополнительные групповые
-          занятия для развития беглой речи.
+          {content.description}
         </p>
         <div class="english-benefits">
           {
-            items.map((e) => {
+            content.items.map((e) => {
               return (
                 <div class="benefit-item">
                   <h4>{e.title}</h4>
@@ -47,40 +53,7 @@ const items = [
           }
         </div>
       </div>
-      <div class="code-preview">
-        <div class="code-header">
-          <div class="code-dot"></div>
-          <div class="code-dot"></div>
-          <div class="code-dot"></div>
-        </div>
-        <div style="font-family: 'JetBrains Mono', monospace; padding: 2rem 0;">
-          <div style="color: var(--text-muted); margin-bottom: 1rem;">
-            # English Track Benefits
-          </div>
-          <div style="color: var(--primary-light); margin-bottom: 0.5rem;">
-            benefits = [
-          </div>
-          <div
-            style="color: var(--accent); margin-left: 2rem; margin-bottom: 0.5rem;"
-          >
-            "Professional English",
-          </div>
-          <div
-            style="color: var(--accent); margin-left: 2rem; margin-bottom: 0.5rem;"
-          >
-            "Global Career Opportunities",
-          </div>
-          <div
-            style="color: var(--accent); margin-left: 2rem; margin-bottom: 0.5rem;"
-          >
-            "Native Tech Terminology",
-          </div>
-          <div style="color: var(--primary-light); margin-bottom: 1rem;">]</div>
-          <div style="color: var(--secondary);">
-            {`print(f"Level up: {len(benefits)} skills!")`}
-          </div>
-        </div>
-      </div>
+      <CodePreview/>
     </div>
   </div>
 </section>
@@ -166,48 +139,5 @@ const items = [
   .benefit-item p {
     font-size: 1rem;
     margin: 0;
-  }
-
-  .code-preview {
-    background: var(--code-bg);
-    border-radius: 20px;
-    padding: 2rem;
-    border: 1px solid var(--border);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .code-header {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .code-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-
-  .code-dot:nth-child(1) {
-    background: #ef4444;
-  }
-  .code-dot:nth-child(2) {
-    background: #f59e0b;
-  }
-  .code-dot:nth-child(3) {
-    background: #10b981;
-  }
-
-  .rotating-code {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 1.3rem;
-    color: var(--primary-light);
-    font-weight: 600;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    transition: opacity 0.3s ease;
   }
 </style>

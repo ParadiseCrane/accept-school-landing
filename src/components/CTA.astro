@@ -1,14 +1,17 @@
 ---
-// Call to Action section
+const content = {
+  title: "Готовы начать?",
+  description:
+    "Свяжитесь с нами через Telegram-бот — мы поможем выбрать подходящую программу и ответим на все вопросы",
+};
 ---
 
 <section class="cta-section">
   <div class="container">
     <div class="cta-content">
-      <h2>Готовы начать?</h2>
+      <h2>{content.title}</h2>
       <p>
-        Свяжитесь с нами через Telegram-бот — мы поможем выбрать подходящую
-        программу и ответим на все вопросы
+        {content.description}
       </p>
       <a
         href="https://t.me/accept_school_bot"

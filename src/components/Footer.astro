@@ -1,32 +1,37 @@
 ---
 import Logo from "./Logo.astro";
 
-const footerSections = [
-  {
-    title: "Курсы",
-    links: [
-      { label: "Алгоритмы и структуры данных", href: "#courses" },
-      { label: "Modern Python", href: "#courses" },
-      { label: "English Track", href: "#english" },
-    ],
-  },
-  {
-    title: "О школе",
-    links: [
-      { label: "Accept Platform", href: "#platform" },
-      { label: "FAQ", href: "#faq" },
-      { label: "Портфолио преподавателя", href: "https://dsomni.ru/" },
-    ],
-  },
-  {
-    title: "Контакты",
-    links: [
-      { label: "Telegram-бот", href: "https://t.me/accept_school_bot" },
-      { label: "Сайт проекта", href: "https://accept-school.ru" },
-      { label: "Платформа", href: "https://code.accept-school.ru" },
-    ],
-  },
-];
+const content = {
+  description:
+    "Онлайн-школа программирования для школьников 7-11 классов. Обучаем алгоритмам и современному Python на собственной платформе с возможностью обучения на английском языке.",
+  rights: "2026 Accept School. Все права защищены.",
+  sections: [
+    {
+      title: "Курсы",
+      links: [
+        { label: "Алгоритмы и структуры данных", href: "#courses" },
+        { label: "Modern Python", href: "#courses" },
+        { label: "English Track", href: "#english" },
+      ],
+    },
+    {
+      title: "О школе",
+      links: [
+        { label: "Accept Platform", href: "#platform" },
+        { label: "FAQ", href: "#faq" },
+        { label: "Портфолио преподавателя", href: "https://dsomni.ru/" },
+      ],
+    },
+    {
+      title: "Контакты",
+      links: [
+        { label: "Telegram-бот", href: "https://t.me/accept_school_bot" },
+        { label: "Сайт проекта", href: "https://accept-school.ru" },
+        { label: "Платформа", href: "https://code.accept-school.ru" },
+      ],
+    },
+  ],
+};
 ---
 
 <footer class="footer">
@@ -34,12 +39,10 @@ const footerSections = [
     <div class="footer-content">
       <div class="footer-section">
         <div class="footer-logo-wrapper">
-          <Logo hideLogo/>
+          <Logo hideLogo />
         </div>
         <p class="footer-description">
-          Онлайн-школа программирования для школьников 7-11 классов. Обучаем
-          алгоритмам и современному Python на собственной платформе с
-          возможностью обучения на английском языке.
+          {content.description}
         </p>
         <div class="social-links">
           <a
@@ -68,7 +71,7 @@ const footerSections = [
       </div>
 
       {
-        footerSections.map((section) => (
+        content.sections.map((section) => (
           <div class="footer-section">
             <h4>{section.title}</h4>
             <ul class="footer-links">
@@ -84,7 +87,7 @@ const footerSections = [
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 Accept School. Все права защищены.</p>
+      <p>&copy; {content.rights}</p>
     </div>
   </div>
 </footer>

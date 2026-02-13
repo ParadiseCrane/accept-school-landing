@@ -1,6 +1,12 @@
 ---
 import MatrixBackground from "./MatrixBackground.astro";
 import CodeWindow from "./CodeWindow.astro";
+
+const content = {
+  title: "Программирование",
+  titleColored: 'нового поколения',
+  description: "Изучайте алгоритмы и современный Python на собственной платформе. Обучение на русском или английском языке с преподавателем мирового уровня."
+}
 ---
 
 <section class="hero">
@@ -10,13 +16,11 @@ import CodeWindow from "./CodeWindow.astro";
     <div class="hero-content">
       <div class="hero-text">
         <h1>
-          Программирование<br />
-          <span class="gradient-text">нового поколения</span>
+          {content.title}<br />
+          <span class="gradient-text">{content.titleColored}</span>
         </h1>
         <p class="hero-description">
-          Изучайте алгоритмы и современный Python на собственной платформе.
-          Обучение на русском или английском языке с преподавателем мирового
-          уровня.
+          {content.description}
         </p>
 
         <div class="hero-buttons">
