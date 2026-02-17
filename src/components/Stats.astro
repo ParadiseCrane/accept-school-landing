@@ -64,17 +64,17 @@ const statItems = [
     color: var(--text-muted);
   }
 
-  @media (max-width: 768px) {
+  @media (width < 768px) {
     .stat-item h3 {
       font-size: 2.5rem;
     }
 
     .stat-item p {
-      font-size: 0.8rem;
+      font-size: 1rem;
     }
   }
 
-  @media (min-width: 560px) and (max-width: 1024px) {
+  @media (width >= 560px) and (width < 1024px) {
     .stats-wrapper {
       grid-template-columns: repeat(2, minmax(250px, 1fr));
     }

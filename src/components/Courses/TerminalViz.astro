@@ -8,12 +8,14 @@
 </div>
 
 <style>
-    .terminal-container {
+  .terminal-container {
     background: #1a1a1a;
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid var(--border);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 550px;
 
     .terminal-header {
       background: #2d2d2d;
@@ -172,7 +174,6 @@
       setTimeout(typeTerminal, 500);
     }
   }
-
 
   // Initialize animations
   if (document.readyState === "loading") {

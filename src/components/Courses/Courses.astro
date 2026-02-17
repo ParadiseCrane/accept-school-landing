@@ -6,44 +6,45 @@ import TerminalViz from "./TerminalViz.astro";
 const content = {
   label: "Наши курсы",
   title: "Программы обучения",
-  description: "Два ключевых курса для формирования фундаментальных навыков программирования и современной разработки",
+  description:
+    "Два ключевых курса для формирования фундаментальных навыков программирования и современной разработки",
   courses: [
     {
-    type: "algorithms",
-    title: "Алгоритмы и структуры данных",
-    description:
-      "Фундаментальный курс для понимания основ computer science. Изучите алгоритмы сортировки, поиска, работу с графами, деревьями и другими структурами данных.",
-    items: [
-      "Анализ сложности алгоритмов (Big O)",
-      "Классические алгоритмы сортировки и поиска",
-      "Работа с деревьями, графами и хеш-таблицами",
-      "Динамическое программирование",
-      "Практические задачи с автопроверкой",
-    ],
-    element: SortViz,
-  },
-  {
-    type: "python",
-    title: "Modern Python",
-    description:
-      "Изучите современный Python с использованием актуальных инструментов: uv, ruff, mypy. Освойте профессиональную разработку и лучшие практики индустрии.",
-    items: [
-      "Современные инструменты разработки (uv, ruff)",
-      "Type hints и статическая типизация (mypy)",
-      "FastAPI и асинхронное программирование",
-      "Работа с базами данных и API",
-      "Реальные проекты и code review",
-    ],
-    element: TerminalViz,
-  }
-  ]
-}
+      type: "algorithms",
+      title: "Алгоритмы и структуры данных",
+      description:
+        "Фундаментальный курс для понимания основ computer science. Изучите алгоритмы сортировки, поиска, работу с графами, деревьями и другими структурами данных.",
+      items: [
+        "Анализ сложности алгоритмов (Big O)",
+        "Классические алгоритмы сортировки и поиска",
+        "Работа с деревьями, графами и хеш-таблицами",
+        "Динамическое программирование",
+        "Практические задачи с автопроверкой",
+      ],
+      element: SortViz,
+    },
+    {
+      type: "python",
+      title: "Modern Python",
+      description:
+        "Изучите современный Python с использованием актуальных инструментов: uv, ruff, mypy. Освойте профессиональную разработку и лучшие практики индустрии.",
+      items: [
+        "Современные инструменты разработки (uv, ruff)",
+        "Type hints и статическая типизация (mypy)",
+        "FastAPI и асинхронное программирование",
+        "Работа с базами данных и API",
+        "Реальные проекты и code review",
+      ],
+      element: TerminalViz,
+    },
+  ],
+};
 ---
 
 <section id="courses" class="section">
   <div class="container">
     <div class="section-header">
-      <SectionLabel label={content.label}/>
+      <SectionLabel label={content.label} />
       <h2>{content.title}</h2>
       <p>
         {content.description}
@@ -56,7 +57,7 @@ const content = {
           <div class={`course-card ${e.type}`}>
             <div class="course-content">
               <e.element />
-              <div class="course-info">
+              <div class="section-header-secondary">
                 <h3>{e.title}</h3>
                 <p>{e.description}</p>
                 <ul class="course-features">
@@ -129,22 +130,14 @@ const content = {
 
   .course-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 3rem;
     align-items: center;
   }
 
-  .course-info h3 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-  }
-
-  .course-info p {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    line-height: 1.8;
+  .course-content > * {
+    min-width: 0;
   }
 
   .course-features {
@@ -167,5 +160,31 @@ const content = {
     color: var(--accent);
     font-weight: bold;
     font-size: 1.2rem;
+  }
+
+  @media (width < 768px) {
+    .course-card {
+      padding: 1rem;
+    }
+
+    .course-features li {
+      padding: 0.25rem 0;
+      padding-left: 2rem;
+    }
+  }
+
+  @media (width < 1024px) {
+    .course-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-content .btn-primary {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
   }
 </style>
