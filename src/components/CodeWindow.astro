@@ -83,8 +83,15 @@ const { title = "modern_python.py", rotating = false } = Astro.props;
 		font-family: "JetBrains Mono", monospace;
 		font-size: 1.3rem;
 		font-weight: 600;
+		text-wrap: initial;
 		color: var(--primary-light);
 		transition: opacity 0.3s ease;
+	}
+
+  @media (max-width: 768px) {
+		.code-body code {
+			font-size: 1rem;
+		}
 	}
 </style>
 
