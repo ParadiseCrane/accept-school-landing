@@ -49,8 +49,10 @@ const content = {
         content.features.map((e) => {
           return (
             <div class="platform-feature">
-              <div class="feature-icon">{e.icon}</div>
-              <h4>{e.title}</h4>
+              <div class={"feature-item-header"}>
+                <div class="feature-icon">{e.icon}</div>
+                <h4>{e.title}</h4>
+              </div>
               <p>{e.description}</p>
             </div>
           );
@@ -116,5 +118,46 @@ const content = {
   .platform-feature p {
     color: var(--text-muted);
     line-height: 1.7;
+  }
+
+  .feature-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  @media (width < 768px) {
+    .platform-showcase {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .platform-feature {
+      padding: 1rem;
+    }
+
+    .platform-feature h4 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .platform-feature p {
+      font-size: 1rem;
+    }
+
+    .feature-icon {
+      height: 40px;
+      width: 40px;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    .feature-item-header {
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
   }
 </style>
