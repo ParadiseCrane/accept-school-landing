@@ -17,7 +17,7 @@ const statItems = [
 
 <section class="stats">
   <div class="container">
-    <div class="stats-grid">
+    <div class="stats-wrapper">
       {
         statItems.map((e) => {
           return (
@@ -42,7 +42,7 @@ const statItems = [
     );
   }
 
-  .stats-grid {
+  .stats-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 3rem;
@@ -52,7 +52,6 @@ const statItems = [
   .stat-item h3 {
     font-size: 3.5rem;
     font-weight: 800;
-    /* color: var(--primary-light); */
     background: var(--gradient-1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -63,5 +62,27 @@ const statItems = [
   .stat-item p {
     font-size: 1.1rem;
     color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .stat-item h3 {
+      font-size: 2.5rem;
+    }
+
+    .stat-item p {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (min-width: 560px) and (max-width: 1024px) {
+    .stats-wrapper {
+      grid-template-columns: repeat(2, minmax(250px, 1fr));
+    }
+
+    .stats-wrapper > .stat-item:nth-child(3) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: min(350px, 100%);
+    }
   }
 </style>
