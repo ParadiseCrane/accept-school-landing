@@ -36,10 +36,10 @@ const content = {
         >
           <SectionLabel label={content.label} />
           <h3>{content.title}</h3>
+          <p>
+            {content.description}
+          </p>
         </div>
-        <p>
-          {content.description}
-        </p>
         <div class="english-benefits">
           {
             content.items.map((e) => {
@@ -129,5 +129,22 @@ const content = {
   .benefit-item p {
     font-size: 1rem;
     margin: 0;
+  }
+
+  @media (width < 1024px) {
+    .english-content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media (width < 768px) {
+    .benefit-item {
+      padding: 1rem;
+    }
+
+    .benefit-item h4 {
+      font-size: 1.2rem;
+    }
   }
 </style>
