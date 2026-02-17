@@ -5,23 +5,25 @@ import CodePreview from "./CodePreview.astro";
 const content = {
   label: "English Track",
   title: "Учитесь на английском",
-  description: "Уникальная возможность изучать программирование на английском языке. Все занятия проводятся на английском, плюс дополнительные групповые занятия для развития беглой речи.",
+  description:
+    "Уникальная возможность изучать программирование на английском языке. Все занятия проводятся на английском, плюс дополнительные групповые занятия для развития беглой речи.",
   items: [
-  {
-    title: "🌍 Международный уровень",
-    description: "Готовьтесь к работе в международных компаниях с первого дня",
-  },
-  {
-    title: "💬 Развитие языка",
-    description:
-      "Групповые занятия для развития беглого технического английского",
-  },
-  {
-    title: "📚 Оригинальная терминология",
-    description: "Изучайте программирование на языке мировой индустрии",
-  },
-]
-}
+    {
+      title: "🌍 Международный уровень",
+      description:
+        "Готовьтесь к работе в международных компаниях с первого дня",
+    },
+    {
+      title: "💬 Развитие языка",
+      description:
+        "Групповые занятия для развития беглого технического английского",
+    },
+    {
+      title: "📚 Оригинальная терминология",
+      description: "Изучайте программирование на языке мировой индустрии",
+    },
+  ],
+};
 ---
 
 <section class="english-track section" id="english">
@@ -29,10 +31,10 @@ const content = {
     <div class="english-content">
       <div class="english-info">
         <div
-          class="section-header"
+          class="section-header-secondary"
           style="text-align: left; margin-bottom: 2rem;"
         >
-          <SectionLabel label={content.label}/>
+          <SectionLabel label={content.label} />
           <h3>{content.title}</h3>
         </div>
         <p>
@@ -44,16 +46,14 @@ const content = {
               return (
                 <div class="benefit-item">
                   <h4>{e.title}</h4>
-                  <p>
-                    {e.description}
-                  </p>
+                  <p>{e.description}</p>
                 </div>
               );
             })
           }
         </div>
       </div>
-      <CodePreview/>
+      <CodePreview />
     </div>
   </div>
 </section>
@@ -97,18 +97,8 @@ const content = {
     z-index: 2;
   }
 
-  .english-info h3 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
   .english-info p {
-    font-size: 1.2rem;
     color: var(--text-muted);
-    margin-bottom: 2rem;
-    line-height: 1.8;
   }
 
   .english-benefits {

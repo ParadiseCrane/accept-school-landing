@@ -47,7 +47,7 @@
       font-family: "JetBrains Mono", monospace;
       font-size: 1rem;
       line-height: 1.8;
-      min-height: 300px;
+      min-height: 400px;
       color: #e0e0e0;
       transition: opacity 0.3s ease;
     }
@@ -92,6 +92,12 @@
       100% {
         opacity: 0;
       }
+    }
+  }
+
+  @media (width < 768px) {
+    .terminal-container .terminal-body {
+      padding: 1rem;
     }
   }
 </style>
