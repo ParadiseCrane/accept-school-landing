@@ -50,6 +50,7 @@ const { question, answer } = Astro.props;
     font-weight: 600;
     font-size: 1.2rem;
     transition: all 0.3s ease;
+    user-select: none;
   }
 
   .faq-question:hover {
@@ -60,6 +61,7 @@ const { question, answer } = Astro.props;
     font-size: 1.5rem;
     color: var(--primary);
     transition: transform 0.3s ease;
+    user-select: none;
   }
 
   .faq-item.active .faq-icon {

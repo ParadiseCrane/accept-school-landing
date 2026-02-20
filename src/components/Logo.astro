@@ -2,13 +2,19 @@
 interface Props {
   showText?: boolean;
   hideLogo?: boolean;
+  stickToRight?: boolean;
   className?: string;
 }
 
-const { showText = true, hideLogo = false, className = "" } = Astro.props;
+const {
+  showText = true,
+  hideLogo = false,
+  stickToRight = false,
+  className = "",
+} = Astro.props;
 ---
 
-<a href="#" class:list={["logo-container", className]}>
+<a href="#" class:list={["logo-container", "stick-to-right", className]}>
   {
     !hideLogo && (
       <svg
@@ -39,8 +45,14 @@ const { showText = true, hideLogo = false, className = "" } = Astro.props;
           d="M 11.795435,30.879335 24.058599,18.723182 30.961195,30.937005 Z"
         />
         <g id="wing">
-          <path d="M 31.019522,11.860296 30.961195,30.937005 49.995011,0.0423681 Z" />
-          <path d="M 11.832897,30.879481 31.019522,11.860296 30.961195,30.937005 Z" />
+          <path
+            id="wing1"
+            d="M 31.019522,11.860296 30.961195,30.937005 49.995011,0.0423681 Z"
+          />
+          <path
+            id="wing2"
+            d="M 11.832897,30.879481 31.019522,11.860296 30.961195,30.937005 Z"
+          />
         </g>
       </svg>
     )
@@ -95,6 +107,18 @@ const { showText = true, hideLogo = false, className = "" } = Astro.props;
   .logo-crane #wing {
     transform-origin: 31px 11px;
     animation: wingFlap 2s ease-in-out infinite;
+  }
+
+  .logo-crane #wing1 {
+    fill: #ffffff;
+  }
+
+  .logo-crane #wing2 {
+    fill: #ffffff;
+  }
+
+  .stick-to-right {
+    margin-right: auto;
   }
 
   @keyframes wingFlap {
