@@ -2,36 +2,16 @@
 import FAQItem from "./FAQItem.astro";
 import SectionLabel from "./SectionLabel.astro";
 
-const content = {
-  label: "FAQ",
-  title: "Частые вопросы",
-  description: "Ответы на самые популярные вопросы о наших курсах",
-  faqs: [
-    {
-      question: "Какой уровень подготовки нужен для начала?",
-      answer: `Для курса "Алгоритмы и структуры данных" желательно знание основ любого языка программирования. Курс "Modern Python" подойдёт как для начинающих, так и для тех, кто хочет улучшить свои навыки.`,
-    },
-    {
-      question: "Как проходят занятия на English Track?",
-      answer: `Все основные занятия проводятся полностью на английском языке. Дополнительно проводятся групповые занятия для развития беглой разговорной речи и технического английского. Преподаватель поддерживает студентов и помогает с языковыми трудностями.`,
-    },
-    {
-      question: "Как работает Accept Platform?",
-      answer: `Accept Platform — это наша собственная система для отправки и проверки решений. Вы пишете код прямо в браузере, отправляете на проверку и мгновенно получаете результаты. Платформа доступна 24/7 и работает с любого устройства.`,
-    },
-    {
-      question: "Какой формат обучения?",
-      answer: `Обучение проходит в формате онлайн-занятий с преподавателем и самостоятельной работы на платформе. Каждый урок включает теоретическую часть, разбор примеров и практические задания. Доступ к материалам и платформе сохраняется после окончания курса.`,
-    },
-    {
-      question: "Можно ли проходить оба курса одновременно?",
-      answer: `Да, можно! Многие студенты успешно совмещают оба курса. Однако мы рекомендуем начать с одного курса, чтобы качественно усвоить материал. Свяжитесь с нами через Telegram-бот, и мы поможем составить оптимальный план обучения.`,
-    },
-  ],
-};
+import { getEntry } from "astro:content";
+import type { FaqSectionData } from "../content/sections/faq.schema";
+
+const entry = await getEntry("faqSection", "faq");
+if (!entry) throw new Error("Missing sections/faq.md");
+
+const content = entry.data as FaqSectionData;
 ---
 
-<section id="faq" class="section faq-section">
+<section id="faq" class="section">
   <div class="container">
     <div class="section-header">
       <SectionLabel label={content.label} />
@@ -40,7 +20,11 @@ const content = {
     </div>
 
     <div class="faq-list">
-      {content.faqs.map((faq) => <FAQItem {...faq} />)}
+      {
+        content.faqs.map((f) => (
+          <FAQItem question={f.question} answer={f.answer} />
+        ))
+      }
     </div>
   </div>
 </section>

@@ -1,38 +1,13 @@
 ---
 import SectionLabel from "./SectionLabel.astro";
 
-const content = {
-  label: "Accept Platform",
-  title: "Собственная платформа",
-  description:
-    "Мы разработали продвинутую платформу для обучения программированию с автоматической проверкой кода и детальным фидбеком",
-  features: [
-    {
-      title: "Мгновенная проверка",
-      icon: "⚡",
-      description:
-        "Отправляйте решения и получайте результаты проверки в режиме реального времени. Детальный фидбек поможет быстрее исправить ошибки.",
-    },
-    {
-      title: "Автоматическое тестирование",
-      icon: "🎯",
-      description:
-        "Ваш код проверяется на множестве тестовых случаев, включая граничные значения и edge cases. Как в настоящих code interviews.",
-    },
-    {
-      title: "Отслеживание прогресса",
-      icon: "📊",
-      description:
-        "Следите за своими достижениями, смотрите статистику решённых задач и анализируйте свой рост как разработчика.",
-    },
-    {
-      title: "Современный интерфейс",
-      icon: "💻",
-      description:
-        "Удобный редактор кода с подсветкой синтаксиса, автодополнением и всеми функциями профессиональной IDE.",
-    },
-  ],
-};
+import { getEntry } from "astro:content";
+import type { PlatformSectionData } from "../content/sections/platform.schema";
+
+const entry = await getEntry("platformSection", "platform");
+if (!entry) throw new Error("Missing sections/platform.md");
+
+const content = entry.data as PlatformSectionData;
 ---
 
 <section class="platform section" id="platform">
@@ -40,25 +15,23 @@ const content = {
     <div class="section-header">
       <SectionLabel label={content.label} />
       <h2>{content.title}</h2>
-      <p>
-        {content.description}
-      </p>
+      <p>{content.description}</p>
     </div>
+
     <div class="platform-showcase">
       {
-        content.features.map((e) => {
-          return (
-            <div class="platform-feature">
-              <div class={"feature-item-header"}>
-                <div class="feature-icon">{e.icon}</div>
-                <h4>{e.title}</h4>
-              </div>
-              <p>{e.description}</p>
+        content.features.map((e) => (
+          <div class="platform-feature">
+            <div class="feature-item-header">
+              <div class="feature-icon">{e.icon}</div>
+              <h4>{e.title}</h4>
             </div>
-          );
-        })
+            <p>{e.description}</p>
+          </div>
+        ))
       }
     </div>
+
     <div style="text-align: center; margin-top: 3rem">
       <a
         href="https://code.accept-school.ru/"

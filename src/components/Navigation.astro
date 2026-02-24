@@ -1,12 +1,13 @@
 ---
 import Logo from "./Logo.astro";
+import { getEntry, type CollectionEntry } from "astro:content";
 
-const navLinks = [
-  { href: "#courses", label: "Курсы" },
-  { href: "#english", label: "English Track" },
-  { href: "#platform", label: "Платформа" },
-  { href: "#faq", label: "FAQ" },
-];
+type NavData = CollectionEntry<"navigation">["data"];
+
+const entry = await getEntry("navigation", "navbar");
+if (!entry) throw new Error("Missing entry: src/content/navigation/navbar.md");
+
+const { links: navLinks, cta, aria } = entry.data as NavData;
 ---
 
 <nav id="navbar">

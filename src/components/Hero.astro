@@ -2,12 +2,13 @@
 import MatrixBackground from "./MatrixBackground.astro";
 import CodeWindow from "./CodeWindow.astro";
 
-const content = {
-  title: "Программирование",
-  titleColored: "нового поколения",
-  description:
-    "Изучайте алгоритмы и современный Python на собственной платформе. Обучение на русском или английском языке с преподавателем мирового уровня.",
-};
+import { getEntry } from "astro:content";
+import type { HeroSectionData } from "../content/sections/hero.schema";
+
+const entry = await getEntry("heroSection", "hero");
+if (!entry) throw new Error("Missing sections/hero.md");
+
+const content = entry.data as HeroSectionData;
 ---
 
 <section class="hero">

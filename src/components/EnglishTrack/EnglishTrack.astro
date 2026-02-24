@@ -2,28 +2,13 @@
 import SectionLabel from "../SectionLabel.astro";
 import CodePreview from "./CodePreview.astro";
 
-const content = {
-  label: "English Track",
-  title: "Учитесь на английском",
-  description:
-    "Уникальная возможность изучать программирование на английском языке. Все занятия проводятся на английском, плюс дополнительные групповые занятия для развития беглой речи.",
-  items: [
-    {
-      title: "🌍 Международный уровень",
-      description:
-        "Готовьтесь к работе в международных компаниях с первого дня",
-    },
-    {
-      title: "💬 Развитие языка",
-      description:
-        "Групповые занятия для развития беглого технического английского",
-    },
-    {
-      title: "📚 Оригинальная терминология",
-      description: "Изучайте программирование на языке мировой индустрии",
-    },
-  ],
-};
+import { getEntry } from "astro:content";
+import type { EnglishSectionData } from "../../content/sections/english.schema";
+
+const entry = await getEntry("englishSection", "english");
+if (!entry) throw new Error("Missing sections/english.md");
+
+const content = entry.data as EnglishSectionData;
 ---
 
 <section class="english-track section" id="english">
@@ -36,23 +21,21 @@ const content = {
         >
           <SectionLabel label={content.label} />
           <h3>{content.title}</h3>
-          <p>
-            {content.description}
-          </p>
+          <p>{content.description}</p>
         </div>
+
         <div class="english-benefits">
           {
-            content.items.map((e) => {
-              return (
-                <div class="benefit-item">
-                  <h4>{e.title}</h4>
-                  <p>{e.description}</p>
-                </div>
-              );
-            })
+            content.items.map((e) => (
+              <div class="benefit-item">
+                <h4>{e.title}</h4>
+                <p>{e.description}</p>
+              </div>
+            ))
           }
         </div>
       </div>
+
       <CodePreview />
     </div>
   </div>

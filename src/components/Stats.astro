@@ -1,32 +1,23 @@
 ---
-const statItems = [
-  {
-    title: "2",
-    description: "Языка обучения: русский и английский",
-  },
-  {
-    title: "100%",
-    description: "Практические задания на собственной платформе",
-  },
-  {
-    title: "24/7",
-    description: "Доступ к материалам и проверке кода",
-  },
-];
+import { getEntry } from "astro:content";
+import type { StatsSectionData } from "../content/sections/stats.schema";
+
+const entry = await getEntry("statsSection", "stats");
+if (!entry) throw new Error("Missing sections/stats.md");
+
+const { items: statItems } = entry.data as StatsSectionData;
 ---
 
 <section class="stats">
   <div class="container">
     <div class="stats-wrapper">
       {
-        statItems.map((e) => {
-          return (
-            <div class="stat-item">
-              <h3>{e.title}</h3>
-              <p>{e.description}</p>
-            </div>
-          );
-        })
+        statItems.map((e) => (
+          <div class="stat-item">
+            <h3>{e.title}</h3>
+            <p>{e.description}</p>
+          </div>
+        ))
       }
     </div>
   </div>

@@ -1,18 +1,19 @@
 ---
-const content = {
-  title: "Готовы начать?",
-  description:
-    "Свяжитесь с нами через Telegram-бот — мы поможем выбрать подходящую программу и ответим на все вопросы",
-};
+import { getEntry } from "astro:content";
+import type { CtaSectionData } from "../content/sections/cta.schema";
+
+const entry = await getEntry("ctaSection", "cta");
+if (!entry) throw new Error("Missing sections/cta.md");
+
+const content = entry.data as CtaSectionData;
 ---
 
 <section class:list={["section", "cta-section"]}>
   <div class="container">
     <div class:list={["section-header", "cta-content"]}>
       <h2>{content.title}</h2>
-      <p>
-        {content.description}
-      </p>
+      <p>{content.description}</p>
+
       <a
         href="https://t.me/accept_school_bot"
         target="_blank"

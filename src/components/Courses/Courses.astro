@@ -3,41 +3,20 @@ import SectionLabel from "../SectionLabel.astro";
 import SortViz from "./SortViz.astro";
 import TerminalViz from "./TerminalViz.astro";
 
-const content = {
-  label: "Наши курсы",
-  title: "Программы обучения",
-  description:
-    "Два ключевых курса для формирования фундаментальных навыков программирования и современной разработки",
-  courses: [
-    {
-      type: "algorithms",
-      title: "Алгоритмы и структуры данных",
-      description:
-        "Фундаментальный курс для понимания основ computer science. Изучите алгоритмы сортировки, поиска, работу с графами, деревьями и другими структурами данных.",
-      items: [
-        "Анализ сложности алгоритмов (Big O)",
-        "Классические алгоритмы сортировки и поиска",
-        "Работа с деревьями, графами и хеш-таблицами",
-        "Динамическое программирование",
-        "Практические задачи с автопроверкой",
-      ],
-      element: SortViz,
-    },
-    {
-      type: "python",
-      title: "Modern Python",
-      description:
-        "Изучите современный Python с использованием актуальных инструментов: uv, ruff, mypy. Освойте профессиональную разработку и лучшие практики индустрии.",
-      items: [
-        "Современные инструменты разработки (uv, ruff)",
-        "Type hints и статическая типизация (mypy)",
-        "FastAPI и асинхронное программирование",
-        "Работа с базами данных и API",
-        "Реальные проекты и code review",
-      ],
-      element: TerminalViz,
-    },
-  ],
+import { getEntry } from "astro:content";
+import type {
+  CoursesSectionData,
+  CourseType,
+} from "../../content/sections/courses.schema";
+
+const entry = await getEntry("coursesSection", "courses");
+if (!entry) throw new Error("Missing sections/courses.md");
+
+const content = entry.data as CoursesSectionData;
+
+const vizMap: Record<CourseType, any> = {
+  algorithms: SortViz,
+  python: TerminalViz,
 };
 ---
 
@@ -46,31 +25,27 @@ const content = {
     <div class="section-header">
       <SectionLabel label={content.label} />
       <h2>{content.title}</h2>
-      <p>
-        {content.description}
-      </p>
+      <p>{content.description}</p>
     </div>
 
     {
-      content.courses.map((e) => {
+      content.courses.map((course) => {
+        const Viz = vizMap[course.type];
+
         return (
-          <div class={`course-card ${e.type}`}>
+          <div class={`course-card ${course.type}`}>
             <div class="course-content">
-              <e.element />
+              <Viz />
               <div class="section-header-secondary">
-                <h3>{e.title}</h3>
-                <p>{e.description}</p>
+                <h3>{course.title}</h3>
+                <p>{course.description}</p>
                 <ul class="course-features">
-                  {e.items.map((li) => {
-                    return <li>{li}</li>;
-                  })}
+                  {course.items.map((li) => (
+                    <li>{li}</li>
+                  ))}
                 </ul>
-                <a
-                  href="https://t.me/accept_school_bot"
-                  target="_blank"
-                  class="btn-primary"
-                >
-                  Записаться на курс
+                <a href={content.cta.href} target="_blank" class="btn-primary">
+                  {content.cta.label}
                 </a>
               </div>
             </div>
