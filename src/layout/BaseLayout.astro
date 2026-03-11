@@ -6,7 +6,7 @@ interface Props {
 
 const {
   title = "Accept School — Онлайн-школа программирования нового поколения",
-  description = "Изучайте Python, веб-разработку и Computer Science с современными инструментами",
+  description = "Освойте Python и алгоритмы с нуля. Современная платформа, автоматическая проверка кода, обучение на английском. Курсы для школьников. Запишитесь!",
 } = Astro.props;
 ---
 
@@ -16,7 +16,9 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>{title}</title>
+    <link rel="canonical" href="https://accept-school.ru" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,6 +29,120 @@ const {
       defer
       src="https://cloud.umami.is/script.js"
       data-website-id="dcde0e21-ef1a-4a7b-b561-6a5771b9ca25"></script>
+    <meta property="og:title" content="Accept School — Онлайн-школа программирования нового поколения">
+    <meta property="og:description" content="Изучайте Python, алгоритмы и Computer Science на собственной платформе с автопроверкой кода. Обучение на русском или английском языках.">
+    <meta property="og:image" content="https://accept-school.ru/og-image.jpg">
+    <meta property="og:url" content="https://accept-school.ru/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Accept School">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Accept School — Онлайн-школа программирования нового поколения">
+    <meta name="twitter:description" content="Изучайте Python, алгоритмы и Computer Science на собственной платформе с автопроверкой кода. Обучение на русском или английском с преподавателем мирового уровня.">
+    <meta name="twitter:image" content="https://accept-school.ru/og-image.jpg">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://accept-school.ru/#organization",
+      "name": "Accept School",
+      "url": "https://accept-school.ru/",
+      "logo": "https://accept-school.ru/logo.png",
+      "sameAs": [
+        "https://t.me/accept_school_bot",
+        "https://github.com/ParadiseCrane"
+      ],
+      "description": "Онлайн-школа программирования нового поколения для школьников 7–11 классов"
+    },
+    {
+      "@type": "Course",
+      "@id": "https://accept-school.ru/#course-algorithms",
+      "name": "Алгоритмы и структуры данных",
+      "description": "Фундаментальный курс для понимания основ computer science. Изучите алгоритмы сортировки, поиска, работу с графами, деревьями и другими структурами данных.",
+      "provider": {
+        "@id": "https://accept-school.ru/#organization"
+      },
+      "url": "https://t.me/accept_school_bot",
+      "educationalCredentialAwarded": "Сертификат о прохождении курса",
+      "timeRequired": "PT48H",
+      "teaches": [
+        "Анализ сложности алгоритмов (Big O)",
+        "Классические алгоритмы сортировки и поиска",
+        "Работа с деревьями, графами и хеш-таблицами",
+        "Динамическое программирование"
+      ]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://accept-school.ru/#course-python",
+      "name": "Modern Python",
+      "description": "Изучите современный Python с использованием актуальных инструментов: uv, ruff, mypy. Освойте профессиональную разработку и лучшие практики индустрии.",
+      "provider": {
+        "@id": "https://accept-school.ru/#organization"
+      },
+      "url": "https://t.me/accept_school_bot",
+      "educationalCredentialAwarded": "Сертификат о прохождении курса",
+      "timeRequired": "PT48H",
+      "teaches": [
+        "Современные инструменты разработки (uv, ruff)",
+        "Type hints и статическая типизация (mypy)",
+        "FastAPI и асинхронное программирование",
+        "Работа с базами данных и API",
+        "Реальные проекты и code review"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://accept-school.ru/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Какой уровень подготовки нужен для начала?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для курса 'Алгоритмы и структуры данных' желательно знание основ любого языка программирования. Курс 'Modern Python' подойдёт как для начинающих, так и для тех, кто хочет улучшить свои навыки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как проходят занятия на English Track?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Все основные занятия проводятся полностью на английском языке. Дополнительно проводятся групповые занятия для развития беглой разговорной речи и технического английского. Преподаватель поддерживает студентов и помогает с языковыми трудностями."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как работает Accept Platform?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Accept Platform — это наша собственная система для отправки и проверки решений. Вы пишете код прямо в браузере, отправляете на проверку и мгновенно получаете результаты. Платформа доступна 24/7 и работает с любого устройства."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какой формат обучения?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Обучение проходит в формате онлайн-занятий с преподавателем и самостоятельной работы на платформе. Каждый урок включает теоретическую часть, разбор примеров и практические задания. Доступ к материалам и платформе сохраняется после окончания курса."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли проходить оба курса одновременно?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, можно. Многие студенты успешно совмещают оба курса. Однако мы рекомендуем начать с одного курса, чтобы качественно усвоить материал. Свяжитесь с нами через Telegram-бот, и мы поможем составить оптимальный план обучения."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
   </head>
   <body>
     <slot />

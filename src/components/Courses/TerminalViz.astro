@@ -102,17 +102,19 @@
   }
 </style>
 
-<script>
+<script defer>
   const terminalSequences = [
     [
       { text: "$ ", class: "prompt", delay: 0 },
       { text: "uv init modern-python", class: "command", delay: 60 },
       { text: "\n", delay: 600 },
       { text: "✓ Initialized project\n\n", class: "success", delay: 40 },
+      { text: "\n", delay: 600 },
       { text: "$ ", class: "prompt", delay: 500 },
       { text: "uv add fastapi uvicorn", class: "command", delay: 60 },
       { text: "\n", delay: 600 },
       { text: "✓ Dependencies installed\n\n", class: "success", delay: 40 },
+      { text: "\n", delay: 600 },
       { text: "$ ", class: "prompt", delay: 500 },
       { text: "uv run python app.py", class: "command", delay: 60 },
       { text: "\n", delay: 900 },
@@ -127,6 +129,7 @@
       { text: "ruff check .", class: "command", delay: 60 },
       { text: "\n", delay: 600 },
       { text: "✓ All checks passed\n\n", class: "success", delay: 40 },
+      { text: "\n", delay: 600 },
       { text: "$ ", class: "prompt", delay: 500 },
       { text: "mypy src/", class: "command", delay: 60 },
       { text: "\n", delay: 600 },
@@ -135,6 +138,7 @@
         class: "success",
         delay: 40,
       },
+      { text: "\n", delay: 600 },
       { text: "$ ", class: "prompt", delay: 500 },
       { text: "pytest tests/ -v", class: "command", delay: 60 },
       { text: "\n", delay: 900 },

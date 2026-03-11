@@ -70,8 +70,8 @@
   }
 </style>
 
-<script>
-  function createBars(containerId: any) {
+<script defer>
+  function createBars(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return null;
 
@@ -91,7 +91,7 @@
     };
   }
 
-  async function bubbleSortAnimation(containerId: any) {
+  async function bubbleSortAnimation(containerId) {
     const result = createBars(containerId);
     if (!result) return;
 
