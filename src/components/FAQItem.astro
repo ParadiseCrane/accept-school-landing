@@ -1,0 +1,97 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div class="faq-item">
+  <div class="faq-question">
+    <span>{question}</span>
+    <span class="faq-icon">+</span>
+  </div>
+  <div class="faq-answer">
+    <div class="faq-answer-content">{answer}</div>
+  </div>
+</div>
+
+<style>
+  .faq {
+    background: var(--bg-darker);
+  }
+
+  .faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: var(--primary);
+  }
+
+  .faq-question {
+    padding: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .faq-question:hover {
+    color: var(--primary-light);
+  }
+
+  .faq-icon {
+    font-size: 1.5rem;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+    user-select: none;
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 500px;
+  }
+
+  .faq-answer-content {
+    padding: 0 2rem 2rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  @media (width < 768px) {
+    .faq-answer-content {
+      padding: 0 1rem 1rem;
+    }
+
+    .faq-question {
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+  }
+</style>

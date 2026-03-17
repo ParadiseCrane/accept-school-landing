@@ -1,0 +1,138 @@
+---
+interface Props {
+  showText?: boolean;
+  hideLogo?: boolean;
+  stickToRight?: boolean;
+  className?: string;
+}
+
+const {
+  showText = true,
+  hideLogo = false,
+  stickToRight = false,
+  className = "",
+} = Astro.props;
+---
+
+<a href="#" class:list={["logo-container", "stick-to-right", className]}>
+  {
+    !hideLogo && (
+      <svg
+        class="logo-crane"
+        viewBox="0 0 50 60"
+        xmlns="http://www.w3.org/2000/svg"
+        stroke-width="1px"
+        stroke="black"
+      >
+        <path
+          id="head"
+          d="M 11.795435,1.0438467 V 12.08313 H 0.04974367 L 11.795435,1.0438467"
+        />
+        <path
+          id="path3"
+          d="M 11.795435,1.0438467 V 30.879335 L 24.058599,18.723182 Z"
+        />
+        <path
+          id="path4"
+          d="m 11.795435,30.879335 19.16576,0.05767 -6.977998,10.725574 z"
+        />
+        <path
+          id="path5"
+          d="m 30.961195,30.937008 -9.25856,14.377794 9.254433,14.513673 z"
+        />
+        <path
+          id="path1"
+          d="M 11.795435,30.879335 24.058599,18.723182 30.961195,30.937005 Z"
+        />
+        <g id="wing">
+          <path
+            id="wing1"
+            d="M 31.019522,11.860296 30.961195,30.937005 49.995011,0.0423681 Z"
+          />
+          <path
+            id="wing2"
+            d="M 11.832897,30.879481 31.019522,11.860296 30.961195,30.937005 Z"
+          />
+        </g>
+      </svg>
+    )
+  }
+  {showText && <span class="logo-text">Accept School</span>}
+</a>
+
+<style>
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .logo-container:hover {
+    transform: translateY(-2px);
+  }
+
+  .logo-crane {
+    width: 36px;
+    height: 43px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .logo-container:hover .logo-crane {
+    transform: rotate(-10deg) translateY(-3px);
+  }
+
+  .logo-crane #head {
+    fill: #ffffff;
+    animation: headBob 3s ease-in-out infinite;
+  }
+
+  .logo-crane #path3 {
+    fill: var(--primary);
+  }
+
+  .logo-crane #path4 {
+    fill: #ffffff;
+  }
+
+  .logo-crane #path5 {
+    fill: var(--primary-light);
+  }
+
+  .logo-crane #path1 {
+    fill: #ffffff;
+  }
+
+  .logo-crane #wing1 {
+    fill: #ffffff;
+  }
+
+  .logo-crane #wing2 {
+    fill: #ffffff;
+  }
+
+  .stick-to-right {
+    margin-right: auto;
+  }
+
+  @keyframes headBob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+</style>

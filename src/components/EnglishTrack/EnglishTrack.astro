@@ -1,0 +1,133 @@
+---
+import SectionLabel from "../SectionLabel.astro";
+import CodePreview from "./CodePreview.astro";
+
+import { getEntry } from "astro:content";
+import type { EnglishSectionData } from "../../content/sections/english.schema";
+
+const entry = await getEntry("englishSection", "english");
+if (!entry) throw new Error("Missing sections/english.md");
+
+const content = entry.data as EnglishSectionData;
+---
+
+<section class="english-track section" id="english">
+  <div class="container">
+    <div class="english-content">
+      <div class="english-info">
+        <div
+          class="section-header-secondary"
+          style="text-align: left; margin-bottom: 2rem;"
+        >
+          <SectionLabel label={content.label} />
+          <h2>{content.title}</h2>
+          <p>{content.description}</p>
+        </div>
+
+        <div class="english-benefits">
+          {
+            content.items.map((e) => (
+              <div class="benefit-item">
+                <h4>{e.title}</h4>
+                <p>{e.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <CodePreview />
+    </div>
+  </div>
+</section>
+
+<style>
+  .english-track {
+    background: linear-gradient(
+      135deg,
+      var(--bg-darker) 0%,
+      var(--bg-dark) 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .english-track::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.1) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .english-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .english-info {
+    position: relative;
+    z-index: 2;
+  }
+
+  .english-info p {
+    color: var(--text-muted);
+  }
+
+  .english-benefits {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .benefit-item {
+    background: rgba(99, 102, 241, 0.05);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .benefit-item:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--primary);
+    transform: translateX(8px);
+  }
+
+  .benefit-item h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-light);
+  }
+
+  .benefit-item p {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  @media (width < 1024px) {
+    .english-content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media (width < 768px) {
+    .benefit-item {
+      padding: 1rem;
+    }
+
+    .benefit-item h4 {
+      font-size: 1.2rem;
+    }
+  }
+</style>

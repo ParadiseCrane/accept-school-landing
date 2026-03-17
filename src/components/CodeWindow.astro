@@ -1,0 +1,123 @@
+---
+interface Props {
+	title?: string;
+	rotating?: boolean;
+}
+
+const { title = "modern_python.py", rotating = false } = Astro.props;
+---
+
+<div class="code-window">
+	<div class="code-header">
+		<div class="dots">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<!-- <span class="code-title">{title}</span> -->
+	</div>
+	<div class="code-body">
+		<pre><code id={rotating ? "rotatingCode" : undefined}><slot>const greeting = "Hello, World!";</slot></code></pre>
+	</div>
+</div>
+
+<style>
+	.code-window {
+		background: var(--bg-dark);
+		border: 1px solid var(--border);
+		border-radius: 16px;
+		overflow: hidden;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+	}
+
+	.code-header {
+		background: rgba(30, 41, 59, 0.8);
+		padding: 1rem 1.5rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.dots {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.dots span {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: var(--text-muted);
+	}
+
+	.dots span:nth-child(1) {
+		background: #ef4444;
+	}
+
+	.dots span:nth-child(2) {
+		background: #f59e0b;
+	}
+
+	.dots span:nth-child(3) {
+		background: #10b981;
+	}
+
+	.code-title {
+		color: var(--text-muted);
+		font-size: 0.9rem;
+	}
+
+	.code-body {
+		background: rgba(30, 41, 59, 0.8);
+		padding: 2rem;
+		font-family: "JetBrains Mono", monospace;
+	}
+
+	.code-body pre {
+		margin: 0;
+		min-height: 60px;
+	}
+
+	.code-body code {
+		font-family: "JetBrains Mono", monospace;
+		font-size: 1.3rem;
+		font-weight: 600;
+		text-wrap: initial;
+		color: var(--primary-light);
+		transition: opacity 0.3s ease;
+	}
+
+  @media (width < 768px) {
+		.code-body code {
+			font-size: 1rem;
+		}
+	}
+</style>
+
+{
+	rotating && (
+		<script>
+			const codeTexts = [
+				"while learning: level_up()",
+				"def success(): return practice",
+				"import knowledge from accept",
+				"class Student(Genius): pass",
+				"for skill in skills: master(skill)",
+			];
+			let codeIndex = 0;
+			const rotatingCode = document.getElementById("rotatingCode");
+
+			if (rotatingCode) {
+				setInterval(() => {
+					rotatingCode.style.opacity = "0";
+					setTimeout(() => {
+						codeIndex = (codeIndex + 1) % codeTexts.length;
+						rotatingCode.textContent = codeTexts[codeIndex];
+						rotatingCode.style.opacity = "1";
+					}, 300);
+				}, 3500);
+			}
+		</script>
+	)
+}

@@ -1,0 +1,312 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Accept School — Онлайн-школа программирования нового поколения",
+  description = "Освойте Python и алгоритмы с нуля. Современная платформа, автоматическая проверка кода, обучение на английском. Курсы для школьников. Запишитесь!",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>{title}</title>
+    <link rel="canonical" href="https://accept-school.ru" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="dcde0e21-ef1a-4a7b-b561-6a5771b9ca25"></script>
+    <meta property="og:title" content="Accept School — Онлайн-школа программирования нового поколения">
+    <meta property="og:description" content="Изучайте Python, алгоритмы и Computer Science на собственной платформе с автопроверкой кода. Обучение на русском или английском языках.">
+    <meta property="og:image" content="https://accept-school.ru/og-image.jpg">
+    <meta property="og:url" content="https://accept-school.ru/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Accept School">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Accept School — Онлайн-школа программирования нового поколения">
+    <meta name="twitter:description" content="Изучайте Python, алгоритмы и Computer Science на собственной платформе с автопроверкой кода. Обучение на русском или английском с преподавателем мирового уровня.">
+    <meta name="twitter:image" content="https://accept-school.ru/og-image.jpg">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://accept-school.ru/#organization",
+      "name": "Accept School",
+      "url": "https://accept-school.ru/",
+      "logo": "https://accept-school.ru/logo.png",
+      "sameAs": [
+        "https://t.me/accept_school_bot",
+        "https://github.com/ParadiseCrane"
+      ],
+      "description": "Онлайн-школа программирования нового поколения для школьников 7–11 классов"
+    },
+    {
+      "@type": "Course",
+      "@id": "https://accept-school.ru/#course-algorithms",
+      "name": "Алгоритмы и структуры данных",
+      "description": "Фундаментальный курс для понимания основ computer science. Изучите алгоритмы сортировки, поиска, работу с графами, деревьями и другими структурами данных.",
+      "provider": {
+        "@id": "https://accept-school.ru/#organization"
+      },
+      "url": "https://t.me/accept_school_bot",
+      "educationalCredentialAwarded": "Сертификат о прохождении курса",
+      "timeRequired": "PT48H",
+      "teaches": [
+        "Анализ сложности алгоритмов (Big O)",
+        "Классические алгоритмы сортировки и поиска",
+        "Работа с деревьями, графами и хеш-таблицами",
+        "Динамическое программирование"
+      ]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://accept-school.ru/#course-python",
+      "name": "Modern Python",
+      "description": "Изучите современный Python с использованием актуальных инструментов: uv, ruff, mypy. Освойте профессиональную разработку и лучшие практики индустрии.",
+      "provider": {
+        "@id": "https://accept-school.ru/#organization"
+      },
+      "url": "https://t.me/accept_school_bot",
+      "educationalCredentialAwarded": "Сертификат о прохождении курса",
+      "timeRequired": "PT48H",
+      "teaches": [
+        "Современные инструменты разработки (uv, ruff)",
+        "Type hints и статическая типизация (mypy)",
+        "FastAPI и асинхронное программирование",
+        "Работа с базами данных и API",
+        "Реальные проекты и code review"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://accept-school.ru/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Какой уровень подготовки нужен для начала?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для курса 'Алгоритмы и структуры данных' желательно знание основ любого языка программирования. Курс 'Modern Python' подойдёт как для начинающих, так и для тех, кто хочет улучшить свои навыки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как проходят занятия на English Track?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Все основные занятия проводятся полностью на английском языке. Дополнительно проводятся групповые занятия для развития беглой разговорной речи и технического английского. Преподаватель поддерживает студентов и помогает с языковыми трудностями."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как работает Accept Platform?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Accept Platform — это наша собственная система для отправки и проверки решений. Вы пишете код прямо в браузере, отправляете на проверку и мгновенно получаете результаты. Платформа доступна 24/7 и работает с любого устройства."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какой формат обучения?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Обучение проходит в формате онлайн-занятий с преподавателем и самостоятельной работы на платформе. Каждый урок включает теоретическую часть, разбор примеров и практические задания. Доступ к материалам и платформе сохраняется после окончания курса."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли проходить оба курса одновременно?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, можно. Многие студенты успешно совмещают оба курса. Однако мы рекомендуем начать с одного курса, чтобы качественно усвоить материал. Свяжитесь с нами через Telegram-бот, и мы поможем составить оптимальный план обучения."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary: #f59e0b;
+    --accent: #10b981;
+    --accent-cyan: #06b6d4;
+    --bg-dark: #0f172a;
+    --bg-darker: #020617;
+    --text-light: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #1e293b;
+    --code-bg: #1e293b;
+    --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --gradient-2: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+    --gradient-3: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family:
+      "Manrope",
+      -apple-system,
+      sans-serif;
+    background: var(--bg-darker);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section {
+    padding: 6rem 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-header h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .section-header p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  .section-header-secondary h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .section-header-secondary p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .gradient-text {
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    color: var(--text-light);
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--gradient-1);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+  }
+
+  @media (width < 1024px) {
+    .section {
+      padding: 3rem 0;
+    }
+  }
+
+  @media (width < 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .section-header p {
+      font-size: 1rem;
+    }
+
+    .section-header-secondary h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .section-header-secondary p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 1rem;
+      font-size: 0.8rem;
+    }
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+import FAQItem from "./FAQItem.astro";
+import SectionLabel from "./SectionLabel.astro";
+
+import { getEntry } from "astro:content";
+import type { FaqSectionData } from "../content/sections/faq.schema";
+
+const entry = await getEntry("faqSection", "faq");
+if (!entry) throw new Error("Missing sections/faq.md");
+
+const content = entry.data as FaqSectionData;
+---
+
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-header">
+      <SectionLabel label={content.label} />
+      <h2>{content.title}</h2>
+      <p>{content.description}</p>
+    </div>
+
+    <div class="faq-list">
+      {
+        content.faqs.map((f) => (
+          <FAQItem question={f.question} answer={f.answer} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+</style>
+
+<script>
+  document.querySelectorAll(".faq-question").forEach((question) => {
+    question.addEventListener("click", () => {
+      const faqItem = question.parentElement;
+      if (!faqItem) return;
+
+      const isActive = faqItem.classList.contains("active");
+
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      if (!isActive) {
+        faqItem.classList.add("active");
+      }
+    });
+  });
+</script>
