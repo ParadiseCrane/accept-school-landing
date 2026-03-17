@@ -11,28 +11,102 @@ if (!entry) throw new Error("Missing sections/faq.md");
 const content = entry.data as FaqSectionData;
 ---
 
-<section id="faq" class="section">
+<section id="faq" class="section faq-section">
   <div class="container">
-    <div class="section-header">
-      <SectionLabel label={content.label} />
-      <h2>{content.title}</h2>
-      <p>{content.description}</p>
-    </div>
+    <div class="faq-shell">
+      <div class="faq-head">
+        <div class="section-header faq-header">
+          <SectionLabel label={content.label} />
+          <h2>{content.title}</h2>
+          <p>{content.description}</p>
+        </div>
 
-    <div class="faq-list">
-      {
-        content.faqs.map((f) => (
-          <FAQItem question={f.question} answer={f.answer} />
-        ))
-      }
+        <aside class="faq-aside surface-card">
+          <span>Нужен быстрый ответ?</span>
+          <strong>Напишите в Telegram-бот и получите рекомендацию по старту</strong>
+          <p>
+            Если выбор курса пока неочевиден, удобнее начать с короткого диалога:
+            подскажем комфортную траекторию и темп.
+          </p>
+          <a href="https://t.me/accept_school_bot" target="_blank" class="btn-secondary">
+            Открыть Telegram
+          </a>
+        </aside>
+      </div>
+
+      <div class="faq-list">
+        {
+          content.faqs.map((item) => (
+            <FAQItem question={item.question} answer={item.answer} />
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  .faq-section {
+    background: transparent;
+  }
+
+  .faq-shell {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .faq-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .faq-header {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .faq-header p {
+    margin-left: 0;
+  }
+
+  .faq-aside {
+    padding: 1.4rem;
+    border-radius: 28px;
+  }
+
+  .faq-aside span {
+    display: inline-flex;
+    color: var(--primary-light);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-aside strong {
+    display: block;
+    font-size: 1.2rem;
+    line-height: 1.35;
+    margin-bottom: 0.8rem;
+  }
+
+  .faq-aside p {
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
   .faq-list {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 980px;
+  }
+
+  @media (width < 1024px) {
+    .faq-head {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 

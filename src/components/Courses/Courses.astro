@@ -22,9 +22,49 @@ const vizMap: Record<CourseType, any> = {
   python: TerminalViz,
   ai: AIViz,
 };
+
+const courseMeta: Record<
+  CourseType,
+  {
+    tag: string;
+    audience: string;
+    promise: string;
+    ctaNote: string;
+    accent: string;
+  }
+> = {
+  "intro-python": {
+    tag: "Старт с нуля",
+    audience: "Для тех, кто только входит в программирование",
+    promise: "Быстрый и понятный вход в код",
+    ctaNote: "Лучший старт без перегруза",
+    accent: "linear-gradient(135deg, rgba(190, 242, 100, 0.16), rgba(45, 212, 191, 0.06))",
+  },
+  algorithms: {
+    tag: "Системное мышление",
+    audience: "Для тех, кто хочет усилить computer science фундамент",
+    promise: "Помогает думать сильнее и решать увереннее",
+    ctaNote: "Для тех, кому нужна система",
+    accent: "linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(20, 184, 166, 0.06))",
+  },
+  python: {
+    tag: "Практика ближе к продакшену",
+    audience: "Для тех, кто уже писал код и хочет перейти на новый уровень",
+    promise: "Современный стек и ощущение реальной разработки",
+    ctaNote: "Следующий шаг после базы",
+    accent: "linear-gradient(135deg, rgba(251, 146, 60, 0.18), rgba(250, 204, 21, 0.06))",
+  },
+  ai: {
+    tag: "Актуальное расширение",
+    audience: "Для тех, кому интересен AI и прикладная логика моделей",
+    promise: "AI без магии, но с понятной логикой",
+    ctaNote: "Широкий взгляд на современные задачи",
+    accent: "linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(16, 185, 129, 0.06))",
+  },
+};
 ---
 
-<section id="courses" class="section">
+<section id="courses" class="section courses-section">
   <div class="container">
     <div class="section-header">
       <SectionLabel label={content.label} />
@@ -32,181 +72,255 @@ const vizMap: Record<CourseType, any> = {
       <p>{content.description}</p>
     </div>
 
-    {
-      content.courses.map((course, index) => {
-        const Viz = vizMap[course.type];
-        const isReversed = index % 2 === 1;
+    <div class="courses-stack">
+      {
+        content.courses.map((course, index) => {
+          const Viz = vizMap[course.type];
+          const meta = courseMeta[course.type];
+          const isReversed = index % 2 === 1;
 
-        return (
-          <div class={`course-card ${course.type}`}>
-            <div class="course-content">
-              {
-                isReversed ? (
-                  <>
-                    <div class="section-header-secondary">
-                      <h3>{course.title}</h3>
-                      <p>{course.description}</p>
-                      <ul class="course-features">
-                        {course.items.map((li) => (
-                          <li>{li}</li>
-                        ))}
-                      </ul>
-                      <a
-                        href={content.cta.href}
-                        target="_blank"
-                        class="btn-primary"
-                      >
-                        {content.cta.label}
-                      </a>
-                    </div>
-                    <Viz />
-                  </>
-                ) : (
-                  <>
-                    <Viz />
-                    <div class="section-header-secondary">
-                      <h3>{course.title}</h3>
-                      <p>{course.description}</p>
-                      <ul class="course-features">
-                        {course.items.map((li) => (
-                          <li>{li}</li>
-                        ))}
-                      </ul>
-                      <a
-                        href={content.cta.href}
-                        target="_blank"
-                        class="btn-primary"
-                      >
-                        {content.cta.label}
-                      </a>
-                    </div>
-                  </>
-                )
-              }
-            </div>
-          </div>
-        );
-      })
-    }
+          return (
+            <article
+              class={`course-card ${course.type} ${isReversed ? "is-reversed" : ""}`}
+              style={`--course-accent: ${meta.accent};`}
+            >
+              <div class="course-card-header">
+                <span class="course-order">{`0${index + 1}`}</span>
+                <div class="course-chip-row">
+                  <span class="course-chip course-chip-primary">{meta.tag}</span>
+                  <span class="course-chip">{meta.audience}</span>
+                </div>
+              </div>
+
+              <div class="course-content">
+                <div class="section-header-secondary course-copy">
+                  <h3>{course.title}</h3>
+                  <p>{course.description}</p>
+                  <p class="course-promise">{meta.promise}</p>
+
+                  <ul class="course-features">
+                    {course.items.map((li) => (
+                      <li>{li}</li>
+                    ))}
+                  </ul>
+
+                  <div class="course-footer">
+                    <a href={content.cta.href} target="_blank" class="btn-primary">
+                      {content.cta.label}
+                    </a>
+                    <span class="course-note">{meta.ctaNote}</span>
+                  </div>
+                </div>
+
+                <div class="course-visual">
+                  <Viz />
+                </div>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
   </div>
 </section>
 
 <style>
-  #courses {
-    background: var(--bg-dark);
+  .courses-section {
+    background: linear-gradient(180deg, rgba(7, 14, 22, 0.75), rgba(5, 11, 18, 0.4));
+  }
+
+  .courses-stack {
+    display: grid;
+    gap: 2rem;
   }
 
   .course-card {
-    background: var(--bg-darker);
-    border-radius: 24px;
-    padding: 3rem;
-    border: 1px solid var(--border);
-    margin-bottom: 3rem;
-    transition: all 0.4s ease;
     position: relative;
+    padding: 2.2rem;
+    border-radius: 34px;
+    border: 1px solid var(--border);
     overflow: hidden;
+    background:
+      var(--course-accent),
+      linear-gradient(180deg, rgba(9, 19, 29, 0.9), rgba(6, 14, 22, 0.92));
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.35s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
   }
 
   .course-card::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-1);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-
-  .course-card:hover::before {
-    transform: scaleX(1);
+    inset: 0;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    background-size: 84px 84px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent);
+    pointer-events: none;
   }
 
   .course-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    border-color: var(--primary);
+    border-color: var(--border-strong);
+    box-shadow: 0 34px 90px rgba(0, 0, 0, 0.34);
   }
 
-  .course-card.intro-python::before {
-    background: var(--gradient-3);
+  .course-card-header,
+  .course-content {
+    position: relative;
+    z-index: 1;
   }
 
-  .course-card.algorithms::before {
-    background: var(--gradient-1);
+  .course-card-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.8rem;
   }
 
-  .course-card.python::before {
-    background: var(--gradient-2);
+  .course-order {
+    font-family: "JetBrains Mono", monospace;
+    color: var(--primary-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
   }
 
-  .course-card.ai::before {
-    background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+  .course-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.6rem;
+  }
+
+  .course-chip {
+    display: inline-flex;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-soft);
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .course-chip-primary {
+    color: var(--primary-light);
+    border-color: rgba(125, 249, 230, 0.2);
+    background: rgba(20, 184, 166, 0.12);
   }
 
   .course-content {
     display: grid;
-    /* grid-template-columns: 1fr 1fr; */
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 3rem;
+    gap: 2.5rem;
     align-items: center;
   }
 
-  .course-content > * {
+  .course-copy {
     min-width: 0;
+  }
+
+  .course-card.is-reversed .course-copy {
+    order: 2;
+  }
+
+  .course-card.is-reversed .course-visual {
+    order: 1;
+  }
+
+  .course-copy h3 {
+    margin-bottom: 1rem;
+  }
+
+  .course-promise {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
   }
 
   .course-features {
     list-style: none;
     margin-bottom: 2rem;
+    display: grid;
+    gap: 0.75rem;
   }
 
   .course-features li {
-    padding: 0.75rem 0;
-    padding-left: 2rem;
     position: relative;
+    padding-left: 1.9rem;
     color: var(--text-muted);
-    font-size: 1rem;
+    line-height: 1.65;
   }
 
   .course-features li::before {
-    content: "✓";
+    content: "";
     position: absolute;
     left: 0;
-    color: var(--accent);
-    font-weight: bold;
-    font-size: 1.2rem;
+    top: 0.6rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 999px;
+    background: var(--gradient-1);
   }
 
-  .course-card:last-child {
-    margin-bottom: 0;
+  .course-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 
-  @media (width < 768px) {
-    .course-card {
-      padding: 1rem;
-    }
-
-    .course-features li {
-      padding: 0.25rem 0;
-      padding-left: 2rem;
-    }
+  .course-note {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    max-width: 34ch;
   }
 
   @media (width < 1024px) {
     .course-content {
-      display: flex;
+      grid-template-columns: 1fr;
+    }
+
+    .course-card.is-reversed .course-copy,
+    .course-card.is-reversed .course-visual {
+      order: initial;
+    }
+
+    .course-card-header {
       flex-direction: column;
     }
 
-    .course-content .btn-primary {
-      display: block;
-      margin: 0 auto;
+    .course-chip-row {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (width < 768px) {
+    .course-card {
+      padding: 1.2rem;
+      border-radius: 24px;
+    }
+
+    .course-content {
+      gap: 1.6rem;
+    }
+
+    .course-footer {
+      align-items: stretch;
+    }
+
+    .course-footer .btn-primary {
       width: 100%;
-      max-width: 400px;
-      text-align: center;
+    }
+
+    .course-note {
+      max-width: none;
     }
   }
 </style>

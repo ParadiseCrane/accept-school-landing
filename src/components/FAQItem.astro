@@ -28,20 +28,23 @@ const { question, answer } = Astro.props;
   }
 
   .faq-item {
-    background: var(--bg-dark);
+    background:
+      radial-gradient(circle at top right, rgba(56, 189, 248, 0.06), transparent 28%),
+      rgba(8, 16, 25, 0.88);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    margin-bottom: 1.5rem;
+    border-radius: 22px;
+    margin-bottom: 1rem;
     overflow: hidden;
     transition: all 0.3s ease;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.16);
   }
 
   .faq-item:hover {
-    border-color: var(--primary);
+    border-color: var(--border-strong);
   }
 
   .faq-question {
-    padding: 2rem;
+    padding: 1.5rem 1.6rem;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -79,7 +82,7 @@ const { question, answer } = Astro.props;
   }
 
   .faq-answer-content {
-    padding: 0 2rem 2rem;
+    padding: 0 1.6rem 1.5rem;
     color: var(--text-muted);
     line-height: 1.8;
   }

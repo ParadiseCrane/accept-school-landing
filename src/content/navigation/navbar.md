@@ -1,5 +1,7 @@
 ---
 links:
+  - href: "#journey"
+    label: "Формат"
   - href: "#courses"
     label: "Курсы"
   - href: "#english"

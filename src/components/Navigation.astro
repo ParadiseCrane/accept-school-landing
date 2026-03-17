@@ -18,7 +18,7 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
       id="burger"
       class="burger"
       type="button"
-      aria-label="Открыть меню"
+      aria-label={aria?.burgerLabel ?? "Открыть меню"}
       aria-controls="mobile-menu"
       aria-expanded="false"
     >
@@ -37,9 +37,13 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
       }
     </ul>
 
-    <a href="https://t.me/accept_school_bot" class="cta-button cta-desktop"
-      >Записаться</a
-    >
+    <div class="nav-actions">
+      <div class="nav-status">
+        <span class="nav-status-dot"></span>
+        Набор открыт
+      </div>
+      <a href={cta.href} class="cta-button cta-desktop">{cta.label}</a>
+    </div>
   </div>
 
   <div id="menu-backdrop" class="menu-backdrop" aria-hidden="true"></div>
@@ -55,9 +59,7 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
       }
     </ul>
 
-    <a href="https://t.me/accept_school_bot" class="cta-button cta-mobile"
-      >Записаться</a
-    >
+    <a href={cta.href} class="cta-button cta-mobile">{cta.label}</a>
   </div>
 </nav>
 
@@ -91,14 +93,44 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
     box-shadow:
       0 10px 40px rgba(0, 0, 0, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    gap: 1rem;
   }
 
   .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 1.4rem;
     list-style: none;
     align-items: center;
-    padding-right: 2.5rem;
+    padding-right: 1rem;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-left: auto;
+  }
+
+  .nav-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(226, 232, 240, 0.08);
+    color: var(--text-soft);
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .nav-status-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 14px rgba(190, 242, 100, 0.6);
   }
 
   .nav-links a,
@@ -261,23 +293,37 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
 
   @media (width < 1024px) {
     .nav-links {
-      gap: 1rem;
-      padding-right: 1.5rem;
+      gap: 0.9rem;
+      padding-right: 0;
     }
 
     .nav-container {
       padding: 0 1rem;
       width: calc(100% - 1rem);
     }
+
+    .nav-status {
+      display: none;
+    }
   }
 
-  @media (width <= 768px) {
+  @media (width < 1280px) {
+    .nav-status {
+      display: none;
+    }
+  }
+
+  @media (width <= 1180px) {
     .nav-links {
       display: none;
     }
 
     .cta-desktop {
       display: none;
+    }
+
+    nav {
+      padding-top: 0.75rem;
     }
 
     .burger {
@@ -341,7 +387,7 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) closeMenu();
+    if (window.innerWidth > 1180) closeMenu();
   });
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

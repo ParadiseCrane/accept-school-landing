@@ -12,125 +12,192 @@ const content = entry.data as PlatformSectionData;
 
 <section class="platform section" id="platform">
   <div class="container">
-    <div class="section-header">
-      <SectionLabel label={content.label} />
-      <h2>{content.title}</h2>
-      <p>{content.description}</p>
-    </div>
+    <div class="platform-shell">
+      <div class="section-header platform-header">
+        <SectionLabel label={content.label} />
+        <h2>{content.title}</h2>
+        <p>{content.description}</p>
+      </div>
 
-    <div class="platform-showcase">
-      {
-        content.features.map((e) => (
-          <div class="platform-feature">
-            <div class="feature-item-header">
-              <div class="feature-icon">{e.icon}</div>
-              <h4>{e.title}</h4>
-            </div>
-            <p>{e.description}</p>
-          </div>
-        ))
-      }
-    </div>
+      <div class="platform-summary">
+        <div class="platform-lead">
+          <h3>Быстрая проверка и понятный ритм</h3>
+          <p>
+            Задачи, проверка и прогресс собраны в одной среде и помогают
+            учиться последовательно без лишних пауз
+          </p>
+        </div>
 
-    <div style="text-align: center; margin-top: 3rem">
-      <a
-        href="https://code.accept-school.ru/"
-        target="_blank"
-        class="btn-primary"
-      >
-        Перейти на платформу
-      </a>
+        <a href="https://code.accept-school.ru/" target="_blank" class="btn-secondary">
+          Посмотреть платформу
+        </a>
+      </div>
+
+      <div class="platform-showcase">
+        {
+          content.features.map((item) => (
+            <article class="platform-feature">
+              <div class="feature-item-header">
+                <div class="feature-icon">{item.icon}</div>
+                <div>
+                  <span class="feature-kicker">Platform benefit</span>
+                  <h3>{item.title}</h3>
+                </div>
+              </div>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="platform-cta">
+        <a href="https://code.accept-school.ru/" target="_blank" class="btn-primary">
+          Перейти на платформу
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .platform {
-    background: var(--bg-dark);
+    background: linear-gradient(180deg, rgba(7, 14, 22, 0.5), rgba(5, 11, 18, 0.8));
+  }
+
+  .platform-shell {
+    padding: 3rem;
+    border-radius: 36px;
+    border: 1px solid var(--border);
+    background:
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent 22%),
+      linear-gradient(180deg, rgba(8, 16, 25, 0.95), rgba(7, 14, 22, 0.92));
+    box-shadow: var(--shadow-card);
+  }
+
+  .platform-header {
+    margin-bottom: 2rem;
+  }
+
+  .platform-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.3rem 1.4rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .platform-lead h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .platform-lead p {
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 44ch;
   }
 
   .platform-showcase {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .feature-kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
   }
 
   .platform-feature {
-    background: var(--bg-darker);
-    padding: 2.5rem;
-    border-radius: 20px;
+    padding: 1.4rem;
+    border-radius: 24px;
     border: 1px solid var(--border);
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.04);
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      background 0.3s ease;
   }
 
   .platform-feature:hover {
-    border-color: var(--primary);
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--border-strong);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .feature-item-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 0.9rem;
   }
 
   .feature-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--gradient-1);
-    border-radius: 14px;
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    background: var(--gradient-1);
+    box-shadow: 0 14px 28px rgba(20, 184, 166, 0.16);
   }
 
-  .platform-feature h4 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+  .platform-feature h3 {
+    margin-top: 0.35rem;
+    font-size: 1.3rem;
   }
 
   .platform-feature p {
     color: var(--text-muted);
-    line-height: 1.7;
+    line-height: 1.65;
   }
 
-  .feature-item-header {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+  .platform-cta {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  @media (width < 1024px) {
+    .platform-summary {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .platform-showcase {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (width < 768px) {
-    .platform-showcase {
-      display: flex;
-      flex-direction: column;
+    .platform-shell {
+      padding: 1.2rem;
+      border-radius: 24px;
     }
 
+    .platform-summary,
     .platform-feature {
       padding: 1rem;
     }
 
-    .platform-feature h4 {
-      font-size: 1.2rem;
-      margin: 0;
-    }
-
-    .platform-feature p {
-      font-size: 1rem;
+    .platform-lead h3 {
+      font-size: 1.45rem;
     }
 
     .feature-icon {
-      height: 40px;
-      width: 40px;
-      font-size: 1rem;
-      flex-shrink: 0;
-      margin: 0;
-    }
-
-    .feature-item-header {
-      flex-direction: row;
-      gap: 1rem;
-      align-items: center;
-      margin-bottom: 1rem;
+      width: 46px;
+      height: 46px;
+      font-size: 1.2rem;
+      border-radius: 14px;
     }
   }
 </style>
