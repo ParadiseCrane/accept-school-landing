@@ -1,0 +1,169 @@
+---
+import SectionLabel from "../SectionLabel.astro";
+import SortViz from "./SortViz.astro";
+import TerminalViz from "./TerminalViz.astro";
+
+import { getEntry } from "astro:content";
+import type {
+  CoursesSectionData,
+  CourseType,
+} from "../../content/sections/courses.schema";
+
+const entry = await getEntry("coursesSection", "courses");
+if (!entry) throw new Error("Missing sections/courses.md");
+
+const content = entry.data as CoursesSectionData;
+
+const vizMap: Record<CourseType, any> = {
+  algorithms: SortViz,
+  python: TerminalViz,
+};
+---
+
+<section id="courses" class="section">
+  <div class="container">
+    <div class="section-header">
+      <SectionLabel label={content.label} />
+      <h2>{content.title}</h2>
+      <p>{content.description}</p>
+    </div>
+
+    {
+      content.courses.map((course) => {
+        const Viz = vizMap[course.type];
+
+        return (
+          <div class={`course-card ${course.type}`}>
+            <div class="course-content">
+              <Viz />
+              <div class="section-header-secondary">
+                <h3>{course.title}</h3>
+                <p>{course.description}</p>
+                <ul class="course-features">
+                  {course.items.map((li) => (
+                    <li>{li}</li>
+                  ))}
+                </ul>
+                <a href={content.cta.href} target="_blank" class="btn-primary">
+                  {content.cta.label}
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  #courses {
+    background: var(--bg-dark);
+  }
+
+  .course-card {
+    background: var(--bg-darker);
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .course-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary);
+  }
+
+  .course-card.algorithms::before {
+    background: var(--gradient-1);
+  }
+
+  .course-card.python::before {
+    background: var(--gradient-2);
+  }
+
+  .course-content {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .course-content > * {
+    min-width: 0;
+  }
+
+  .course-features {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .course-features li {
+    padding: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+
+  .course-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .python {
+    margin-bottom: 0;
+  }
+
+  @media (width < 768px) {
+    .course-card {
+      padding: 1rem;
+    }
+
+    .course-features li {
+      padding: 0.25rem 0;
+      padding-left: 2rem;
+    }
+  }
+
+  @media (width < 1024px) {
+    .course-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-content .btn-primary {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+  }
+</style>

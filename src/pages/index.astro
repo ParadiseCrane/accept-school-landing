@@ -1,21 +1,26 @@
 ---
-import Courses from "../components/Courses.astro";
-import CTA from "../components/CTA.astro";
-import FAQ from "../components/FAQ.astro";
-import Features from "../components/Features.astro";
-import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
-import Navigation from "../components/Navigation.astro";
 import BaseLayout from "../layout/BaseLayout.astro";
-
+import Navigation from "../components/Navigation.astro";
+import Hero from "../components/Hero.astro";
+import Stats from "../components/Stats.astro";
+import Courses from "../components/Courses/Courses.astro";
+import EnglishTrack from "../components/EnglishTrack/EnglishTrack.astro";
+import Platform from '../components/Platform.astro'
+import FAQ from "../components/FAQ.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+import FloatingButton from '../components/FloatingButton.astro'
 ---
 
 <BaseLayout>
-	<Navigation />
-	<Hero />
-	<Courses />
-	<Features />
-	<FAQ />
-	<CTA />
-	<Footer />
+  <Navigation />
+  <Hero />
+  <Stats />
+  <Courses />
+  <EnglishTrack />
+  <Platform />
+  <FAQ />
+  <CTA />
+  <Footer />
+	<FloatingButton />
 </BaseLayout>

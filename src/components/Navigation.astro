@@ -1,147 +1,347 @@
 ---
 import Logo from "./Logo.astro";
+import { getEntry, type CollectionEntry } from "astro:content";
 
-const navLinks = [
-	{ href: "#courses", label: "Курсы" },
-	{ href: "#features", label: "Особенности" },
-	{ href: "#testimonials", label: "Отзывы" },
-	{ href: "#faq", label: "FAQ" },
-];
+type NavData = CollectionEntry<"navigation">["data"];
+
+const entry = await getEntry("navigation", "navbar");
+if (!entry) throw new Error("Missing entry: src/content/navigation/navbar.md");
+
+const { links: navLinks, cta, aria } = entry.data as NavData;
 ---
 
 <nav id="navbar">
-	<div class="nav-container">
-		<Logo />
+  <div class="nav-container">
+    <Logo stickToRight />
 
-		<ul class="nav-links">
-			{navLinks.map((link) => (
-				<li>
-					<a href={link.href}>{link.label}</a>
-				</li>
-			))}
-			<li>
-				<a href="#" class="cta-button">Начать обучение</a>
-			</li>
-		</ul>
-	</div>
+    <button
+      id="burger"
+      class="burger"
+      type="button"
+      aria-label="Открыть меню"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <ul class="nav-links">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a href="https://t.me/accept_school_bot" class="cta-button cta-desktop"
+      >Записаться</a
+    >
+  </div>
+
+  <div id="menu-backdrop" class="menu-backdrop" aria-hidden="true"></div>
+
+  <div id="mobile-menu" class="mobile-menu" data-open="false">
+    <ul class="mobile-links">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a href="https://t.me/accept_school_bot" class="cta-button cta-mobile"
+      >Записаться</a
+    >
+  </div>
 </nav>
 
 <style>
-	nav {
-		position: fixed;
-		top: 0;
-		width: 100%;
-		background: rgba(15, 23, 42, 0.8);
-		backdrop-filter: blur(20px);
-		border-bottom: 1px solid var(--border);
-		z-index: 1000;
-		transition: all 0.3s ease;
-	}
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+  }
 
-	nav.scrolled {
-		background: rgba(15, 23, 42, 0.95);
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-	}
+  nav.scrolled {
+    background: rgba(15, 23, 42, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
 
-	.nav-container {
-		max-width: 1400px;
-		margin: 0 auto;
-		padding: 1.2rem 2rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 5rem;
+    padding: 0 2rem;
+    backdrop-filter: blur(20px);
+  }
 
-	.nav-links {
-		display: flex;
-		gap: 2.5rem;
-		list-style: none;
-		align-items: center;
-	}
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+    padding-right: 2.5rem;
+  }
 
-	.nav-links a {
-		color: var(--text-muted);
-		text-decoration: none;
-		font-weight: 500;
-		font-size: 0.95rem;
-		transition: color 0.3s ease;
-		position: relative;
-	}
+  .nav-links a,
+  .mobile-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
 
-	.nav-links a:hover {
-		color: var(--text-light);
-	}
+  .nav-links a:hover,
+  .mobile-links a:hover {
+    color: var(--text-light);
+  }
 
-	.nav-links a::after {
-		content: "";
-		position: absolute;
-		bottom: -5px;
-		left: 0;
-		width: 0;
-		height: 2px;
-		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-		transition: width 0.3s ease;
-	}
+  .nav-links a::after,
+  .mobile-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-1);
+    transition: width 0.3s ease;
+  }
 
-	.nav-links a:hover::after {
-		width: 100%;
-	}
+  .nav-links a:hover::after,
+  .mobile-links a:hover::after {
+    width: 100%;
+  }
 
-	.cta-button {
-		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-		color: white;
-		padding: 0.75rem 1.75rem;
-		border-radius: 12px;
-		text-decoration: none;
-		font-weight: 600;
-		font-size: 0.95rem;
-		transition: all 0.3s ease;
-		box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-	}
+  .cta-button {
+    background: var(--gradient-1);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    white-space: nowrap;
+  }
 
-	.cta-button:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
-	}
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+  }
 
-	.cta-button::after {
-		display: none;
-	}
+  .cta-button::after {
+    display: none;
+  }
 
-	@media (max-width: 768px) {
-		.nav-links {
-			display: none;
-		}
-	}
+  .burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.35);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+  }
+
+  .burger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-light);
+    border-radius: 2px;
+    transition:
+      transform 0.25s ease,
+      opacity 0.2s ease;
+  }
+
+  .burger.is-open .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .burger.is-open .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.is-open .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 999;
+    margin-top: 5rem;
+  }
+
+  .menu-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 72px;
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+    z-index: 1000;
+    width: 100%;
+    right: 0;
+    max-width: 320px;
+    height: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-menu[data-open="true"] {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .cta-mobile {
+    display: block;
+    text-align: center;
+  }
+
+  @media (width < 1024px) {
+    .nav-links {
+      gap: 1rem;
+      padding-right: 1.5rem;
+    }
+
+    .nav-container {
+      padding: 0 1rem;
+    }
+  }
+
+  @media (width <= 768px) {
+    .nav-links {
+      display: none;
+    }
+
+    .cta-desktop {
+      display: none;
+    }
+
+    .burger {
+      display: inline-flex;
+      margin-left: auto;
+      flex-direction: column;
+    }
+
+    .mobile-menu {
+      top: 5rem;
+    }
+  }
 </style>
 
-<script>
-	const navbar = document.getElementById("navbar");
+<script type="module">
+  const navbar = document.getElementById("navbar");
+  const burger = document.getElementById("burger");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const backdrop = document.getElementById("menu-backdrop");
 
-	if (navbar) {
-		window.addEventListener("scroll", () => {
-			if (window.scrollY > 100) {
-				navbar.classList.add("scrolled");
-			} else {
-				navbar.classList.remove("scrolled");
-			}
-		});
-	}
+  const setBodyScroll = (locked) => {
+    document.body.style.overflow = locked ? "hidden" : "";
+  };
 
-	// Smooth scroll for all anchor links
-	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-		anchor.addEventListener("click", function (e) {
-			const href = this.getAttribute("href");
-			if (href === "#") return;
+  const openMenu = () => {
+    if (!burger || !mobileMenu || !backdrop) return;
+    burger.classList.add("is-open");
+    burger.setAttribute("aria-expanded", "true");
+    mobileMenu.setAttribute("data-open", "true");
+    backdrop.classList.add("is-open");
+    setBodyScroll(true);
+  };
 
-			e.preventDefault();
-			const target = document.querySelector(href);
-			if (target) {
-				target.scrollIntoView({
-					behavior: "smooth",
-					block: "start",
-				});
-			}
-		});
-	});
+  const closeMenu = () => {
+    if (!burger || !mobileMenu || !backdrop) return;
+    burger.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+    mobileMenu.setAttribute("data-open", "false");
+    backdrop.classList.remove("is-open");
+    setBodyScroll(false);
+  };
+
+  const toggleMenu = () => {
+    if (!mobileMenu) return;
+    const isOpen = mobileMenu.getAttribute("data-open") === "true";
+    isOpen ? closeMenu() : openMenu();
+  };
+
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
+    });
+  }
+
+  if (burger) burger.addEventListener("click", toggleMenu);
+  if (backdrop) backdrop.addEventListener("click", closeMenu);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+      closeMenu();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
 </script>

@@ -1,0 +1,136 @@
+---
+import SectionLabel from "./SectionLabel.astro";
+
+import { getEntry } from "astro:content";
+import type { PlatformSectionData } from "../content/sections/platform.schema";
+
+const entry = await getEntry("platformSection", "platform");
+if (!entry) throw new Error("Missing sections/platform.md");
+
+const content = entry.data as PlatformSectionData;
+---
+
+<section class="platform section" id="platform">
+  <div class="container">
+    <div class="section-header">
+      <SectionLabel label={content.label} />
+      <h2>{content.title}</h2>
+      <p>{content.description}</p>
+    </div>
+
+    <div class="platform-showcase">
+      {
+        content.features.map((e) => (
+          <div class="platform-feature">
+            <div class="feature-item-header">
+              <div class="feature-icon">{e.icon}</div>
+              <h4>{e.title}</h4>
+            </div>
+            <p>{e.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem">
+      <a
+        href="https://code.accept-school.ru/"
+        target="_blank"
+        class="btn-primary"
+      >
+        Перейти на платформу
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .platform {
+    background: var(--bg-dark);
+  }
+
+  .platform-showcase {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .platform-feature {
+    background: var(--bg-darker);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .platform-feature:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-1);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .platform-feature h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .platform-feature p {
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .feature-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  @media (width < 768px) {
+    .platform-showcase {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .platform-feature {
+      padding: 1rem;
+    }
+
+    .platform-feature h4 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .platform-feature p {
+      font-size: 1rem;
+    }
+
+    .feature-icon {
+      height: 40px;
+      width: 40px;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    .feature-item-header {
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  }
+</style>

@@ -1,70 +1,56 @@
 ---
 import FAQItem from "./FAQItem.astro";
+import SectionLabel from "./SectionLabel.astro";
 
-const faqs = [
-	{
-		question: "Нужна ли предварительная подготовка?",
-		answer:
-			"Для курса Modern Python нужны базовые знания программирования. Для Web Development — понимание HTML/CSS и JavaScript. Курс CS подходит для тех, кто уже умеет программировать и хочет углубить знания.",
-	},
-	{
-		question: "Сколько времени занимает обучение?",
-		answer:
-			"Каждый курс рассчитан на 3-6 месяцев при нагрузке 10-15 часов в неделю. Темп можно регулировать под себя — учитесь быстрее или медленнее в зависимости от свободного времени.",
-	},
-	{
-		question: "Как проходит обучение?",
-		answer:
-			"Обучение включает видео-лекции, практические задания, реальные проекты и код-ревью от менторов. Каждую неделю — новая тема, задания и обратная связь. Есть общий чат и еженедельные Q&A сессии.",
-	},
-	{
-		question: "Какие инструменты используются?",
-		answer:
-			"Для Python: uv, ruff, mypy, pytest. Для веба: Vite, TypeScript, React, Next.js. Для CS: C, Python, системы контроля версий. Все инструменты современные и используются в реальной разработке.",
-	},
-	{
-		question: "Есть ли помощь в трудоустройстве?",
-		answer:
-			"Да! Помогаем с резюме, подготовкой к собеседованиям, разбираем типовые задачи. Лучшие студенты получают рекомендации для компаний-партнёров. Многие выпускники работают в Яндексе, VK, Тинькофф и других топовых компаниях.",
-	},
-];
+import { getEntry } from "astro:content";
+import type { FaqSectionData } from "../content/sections/faq.schema";
+
+const entry = await getEntry("faqSection", "faq");
+if (!entry) throw new Error("Missing sections/faq.md");
+
+const content = entry.data as FaqSectionData;
 ---
 
-<section id="faq" class="section faq-section">
-	<div class="container">
-		<div class="section-header">
-			<h2>Частые вопросы</h2>
-			<p>Ответы на популярные вопросы</p>
-		</div>
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-header">
+      <SectionLabel label={content.label} />
+      <h2>{content.title}</h2>
+      <p>{content.description}</p>
+    </div>
 
-		<div class="faq-list">
-			{faqs.map((faq) => <FAQItem {...faq} />)}
-		</div>
-	</div>
+    <div class="faq-list">
+      {
+        content.faqs.map((f) => (
+          <FAQItem question={f.question} answer={f.answer} />
+        ))
+      }
+    </div>
+  </div>
 </section>
 
 <style>
-	.faq-list {
-		max-width: 800px;
-		margin: 0 auto;
-	}
+  .faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 </style>
 
 <script>
-	document.querySelectorAll(".faq-question").forEach((question) => {
-		question.addEventListener("click", () => {
-			const faqItem = question.parentElement;
-			if (!faqItem) return;
+  document.querySelectorAll(".faq-question").forEach((question) => {
+    question.addEventListener("click", () => {
+      const faqItem = question.parentElement;
+      if (!faqItem) return;
 
-			const isActive = faqItem.classList.contains("active");
+      const isActive = faqItem.classList.contains("active");
 
-			document.querySelectorAll(".faq-item").forEach((item) => {
-				item.classList.remove("active");
-			});
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.classList.remove("active");
+      });
 
-			if (!isActive) {
-				faqItem.classList.add("active");
-			}
-		});
-	});
+      if (!isActive) {
+        faqItem.classList.add("active");
+      }
+    });
+  });
 </script>

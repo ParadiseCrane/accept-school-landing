@@ -1,153 +1,190 @@
 ---
 import MatrixBackground from "./MatrixBackground.astro";
 import CodeWindow from "./CodeWindow.astro";
+
+import { getEntry } from "astro:content";
+import type { HeroSectionData } from "../content/sections/hero.schema";
+
+const entry = await getEntry("heroSection", "hero");
+if (!entry) throw new Error("Missing sections/hero.md");
+
+const content = entry.data as HeroSectionData;
 ---
 
 <section class="hero">
-	<MatrixBackground />
+  <MatrixBackground />
 
-	<div class="container hero-container">
-		<div class="hero-content">
-			<div class="hero-text">
-				<h1>
-					Программирование<br />
-					<span class="gradient-text">нового поколения</span>
-				</h1>
-				<p class="hero-description">
-					Изучайте Python, веб-разработку и Computer Science с современными инструментами. Живые
-					менторы, интерактивные проекты, глубокое понимание.
-				</p>
+  <div class="container hero-container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>
+          <span>{content.title}{" "}</span>
+          <span class="gradient-text">{content.titleColored}</span>
+        </h1>
+        <p class="hero-description">
+          {content.description}
+        </p>
 
-				<div class="hero-buttons">
-					<a href="#courses" class="btn-primary">Выбрать курс</a>
-					<a href="#" class="btn-secondary">Смотреть демо</a>
-				</div>
+        <div class="hero-buttons">
+          <a href="https://t.me/accept_school_bot" class="btn-primary">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.241-1.865-.44-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.099.155.232.171.326.016.093.036.305.02.469z"
+              ></path>
+            </svg>
+            Начать обучение</a
+          >
+          <a href="#courses" class="btn-secondary">Узнать больше</a>
+        </div>
+      </div>
 
-				<div class="hero-stats">
-					<div class="stat">
-						<div class="stat-number">500+</div>
-						<div class="stat-label">Выпускников</div>
-					</div>
-					<div class="stat">
-						<div class="stat-number">98%</div>
-						<div class="stat-label">Довольных студентов</div>
-					</div>
-					<div class="stat">
-						<div class="stat-number">24/7</div>
-						<div class="stat-label">Поддержка</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="hero-visual">
-				<CodeWindow rotating={true}>while learning: level_up()</CodeWindow>
-			</div>
-		</div>
-	</div>
+      <div class="hero-visual">
+        <CodeWindow rotating={true}>while learning: level_up()</CodeWindow>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-	.hero {
-		min-height: 100vh;
-		display: flex;
-		align-items: center;
-		padding-top: 80px;
-		position: relative;
-		overflow: hidden;
-	}
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
 
-	.hero::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background:
-			radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-			radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
-		pointer-events: none;
-		z-index: 1;
-	}
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(
+        circle at 20% 50%,
+        rgba(99, 102, 241, 0.2) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 80%,
+        rgba(139, 92, 246, 0.15) 0%,
+        transparent 50%
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
 
-	.hero-container {
-		position: relative;
-		z-index: 2;
-	}
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    padding-top: 1rem;
+  }
 
-	.hero-content {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 4rem;
-		align-items: center;
-	}
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
 
-	.hero-text h1 {
-		font-size: 3.8rem;
-		font-weight: 800;
-		line-height: 1.1;
-		margin-bottom: 1.5rem;
-		letter-spacing: -2px;
-	}
+  .hero-text h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+  }
 
-	.hero-description {
-		font-size: 1.25rem;
-		color: var(--text-muted);
-		margin-bottom: 2.5rem;
-		line-height: 1.7;
-	}
+  .hero-text span {
+    display: inline;
+    white-space: nowrap;
+  }
 
-	.hero-buttons {
-		display: flex;
-		gap: 1.5rem;
-		margin-bottom: 3rem;
-	}
+  .hero-description {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
 
-	.hero-stats {
-		display: flex;
-		gap: 3rem;
-	}
+  .hero-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
 
-	.stat {
-		text-align: center;
-	}
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
 
-	.stat-number {
-		font-size: 2.5rem;
-		font-weight: 800;
-		background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.6);
+  }
 
-	.stat-label {
-		font-size: 0.9rem;
-		color: var(--text-muted);
-	}
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+  }
 
-	@media (max-width: 1024px) {
-		.hero-content {
-			grid-template-columns: 1fr;
-			gap: 3rem;
-		}
+  .btn-secondary:hover {
+    transform: translateY(-3px);
+  }
 
-		.hero-text h1 {
-			font-size: 3rem;
-		}
-	}
+  @media (width < 1440px) {
+    .hero-text h1 {
+      font-size: 3rem;
+    }
+  }
 
-	@media (max-width: 768px) {
-		.hero-text h1 {
-			font-size: 2.5rem;
-		}
+  @media (width < 1024px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
 
-		.hero-buttons {
-			flex-direction: column;
-		}
+    .hero-text h1 {
+      font-size: 3rem;
+    }
+  }
 
-		.hero-stats {
-			gap: 2rem;
-		}
-	}
+  @media (width < 768px) {
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  @media (width < 375px) {
+    .hero-text h1 {
+      font-size: 1.8rem;
+    }
+
+    .hero-buttons {
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+
+    .btn-primary {
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      text-align: center;
+    }
+  }
 </style>
