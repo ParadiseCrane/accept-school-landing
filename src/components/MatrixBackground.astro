@@ -19,7 +19,7 @@
   #matrixCanvas {
     width: 100%;
     height: 100%;
-    opacity: 0.15;
+    opacity: 0.85;
   }
 </style>
 
@@ -29,39 +29,104 @@
     const ctx = canvas.getContext("2d");
     if (!ctx) throw new Error("Could not get canvas context");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    type Particle = {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+    };
 
-    const chars = "0123456789";
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array(columns).fill(1);
+    const createParticles = () =>
+      Array.from({ length: 42 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: Math.random() * 2 + 1.2,
+      })) as Particle[];
 
-    function drawMatrix() {
-      if (!ctx) return;
-
-      ctx.fillStyle = "rgba(2, 6, 23, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = "#6366f1";
-      ctx.font = fontSize + "px monospace";
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-    }
-
-    setInterval(drawMatrix, 35);
-
-    window.addEventListener("resize", () => {
+    const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    let particles = createParticles();
+
+    const drawBackground = () => {
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, "rgba(5, 12, 20, 0.08)");
+      gradient.addColorStop(1, "rgba(5, 12, 20, 0.18)");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    };
+
+    const drawConnections = () => {
+      for (let i = 0; i < particles.length; i += 1) {
+        for (let j = i + 1; j < particles.length; j += 1) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 150) {
+            ctx.strokeStyle = `rgba(94, 234, 212, ${0.12 - distance / 1600})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    const drawParticles = () => {
+      particles.forEach((particle, index) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        if (particle.x < 0 || particle.x > canvas.width) {
+          particle.vx *= -1;
+        }
+
+        if (particle.y < 0 || particle.y > canvas.height) {
+          particle.vy *= -1;
+        }
+
+        const gradient = ctx.createRadialGradient(
+          particle.x,
+          particle.y,
+          0,
+          particle.x,
+          particle.y,
+          particle.radius * 8,
+        );
+        gradient.addColorStop(
+          0,
+          index % 5 === 0 ? "rgba(249, 115, 22, 0.9)" : "rgba(34, 211, 238, 0.9)",
+        );
+        gradient.addColorStop(1, "rgba(34, 211, 238, 0)");
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius * 6, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    };
+
+    const render = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawBackground();
+      drawConnections();
+      drawParticles();
+      requestAnimationFrame(render);
+    };
+
+    render();
+
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      particles = createParticles();
     });
   }
 </script>

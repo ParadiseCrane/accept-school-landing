@@ -11,7 +11,7 @@ export const coursesSectionSchema = z.object({
   courses: z
     .array(
       z.object({
-        type: z.enum(["algorithms", "python"]),
+        type: z.enum(["algorithms", "python", "intro-python", "ai"]),
         title: z.string().min(1),
         description: z.string().min(1),
         items: z.array(z.string().min(1)).min(1),

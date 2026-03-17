@@ -14,7 +14,8 @@ const { title = "modern_python.py", rotating = false } = Astro.props;
 			<span></span>
 			<span></span>
 		</div>
-		<!-- <span class="code-title">{title}</span> -->
+		<span class="code-title">{title}</span>
+    <span class="code-badge">demo</span>
 	</div>
 	<div class="code-body">
 		<pre><code id={rotating ? "rotatingCode" : undefined}><slot>const greeting = "Hello, World!";</slot></code></pre>
@@ -23,20 +24,20 @@ const { title = "modern_python.py", rotating = false } = Astro.props;
 
 <style>
 	.code-window {
-		background: var(--bg-dark);
-		border: 1px solid var(--border);
-		border-radius: 16px;
+		background: linear-gradient(180deg, rgba(8, 16, 26, 0.98), rgba(10, 19, 30, 0.92));
+		border: 1px solid rgba(226, 232, 240, 0.1);
+		border-radius: 24px;
 		overflow: hidden;
-		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+		box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
 	}
 
 	.code-header {
-		background: rgba(30, 41, 59, 0.8);
+		background: rgba(255, 255, 255, 0.03);
 		padding: 1rem 1.5rem;
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		border-bottom: 1px solid var(--border);
+		border-bottom: 1px solid rgba(226, 232, 240, 0.08);
 	}
 
 	.dots {
@@ -66,11 +67,27 @@ const { title = "modern_python.py", rotating = false } = Astro.props;
 	.code-title {
 		color: var(--text-muted);
 		font-size: 0.9rem;
+    font-family: "JetBrains Mono", monospace;
+    margin-right: auto;
 	}
 
+  .code-badge {
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(94, 234, 212, 0.22);
+    background: rgba(20, 184, 166, 0.12);
+    color: var(--primary-light);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
 	.code-body {
-		background: rgba(30, 41, 59, 0.8);
-		padding: 2rem;
+		background:
+      radial-gradient(circle at top right, rgba(34, 211, 238, 0.12), transparent 28%),
+      rgba(9, 18, 29, 0.92);
+		padding: 2.4rem 2rem;
 		font-family: "JetBrains Mono", monospace;
 	}
 
@@ -81,11 +98,12 @@ const { title = "modern_python.py", rotating = false } = Astro.props;
 
 	.code-body code {
 		font-family: "JetBrains Mono", monospace;
-		font-size: 1.3rem;
+		font-size: 1.35rem;
 		font-weight: 600;
 		text-wrap: initial;
-		color: var(--primary-light);
+		color: #dffef8;
 		transition: opacity 0.3s ease;
+    text-shadow: 0 0 24px rgba(94, 234, 212, 0.16);
 	}
 
   @media (width < 768px) {

@@ -2,6 +2,8 @@
 import SectionLabel from "../SectionLabel.astro";
 import SortViz from "./SortViz.astro";
 import TerminalViz from "./TerminalViz.astro";
+import IntroPythonViz from "./IntroPythonViz.astro";
+import AIViz from "./AIViz.astro";
 
 import { getEntry } from "astro:content";
 import type {
@@ -15,8 +17,10 @@ if (!entry) throw new Error("Missing sections/courses.md");
 const content = entry.data as CoursesSectionData;
 
 const vizMap: Record<CourseType, any> = {
+  "intro-python": IntroPythonViz,
   algorithms: SortViz,
   python: TerminalViz,
+  ai: AIViz,
 };
 ---
 
@@ -29,25 +33,56 @@ const vizMap: Record<CourseType, any> = {
     </div>
 
     {
-      content.courses.map((course) => {
+      content.courses.map((course, index) => {
         const Viz = vizMap[course.type];
+        const isReversed = index % 2 === 1;
 
         return (
           <div class={`course-card ${course.type}`}>
             <div class="course-content">
-              <Viz />
-              <div class="section-header-secondary">
-                <h3>{course.title}</h3>
-                <p>{course.description}</p>
-                <ul class="course-features">
-                  {course.items.map((li) => (
-                    <li>{li}</li>
-                  ))}
-                </ul>
-                <a href={content.cta.href} target="_blank" class="btn-primary">
-                  {content.cta.label}
-                </a>
-              </div>
+              {
+                isReversed ? (
+                  <>
+                    <div class="section-header-secondary">
+                      <h3>{course.title}</h3>
+                      <p>{course.description}</p>
+                      <ul class="course-features">
+                        {course.items.map((li) => (
+                          <li>{li}</li>
+                        ))}
+                      </ul>
+                      <a
+                        href={content.cta.href}
+                        target="_blank"
+                        class="btn-primary"
+                      >
+                        {content.cta.label}
+                      </a>
+                    </div>
+                    <Viz />
+                  </>
+                ) : (
+                  <>
+                    <Viz />
+                    <div class="section-header-secondary">
+                      <h3>{course.title}</h3>
+                      <p>{course.description}</p>
+                      <ul class="course-features">
+                        {course.items.map((li) => (
+                          <li>{li}</li>
+                        ))}
+                      </ul>
+                      <a
+                        href={content.cta.href}
+                        target="_blank"
+                        class="btn-primary"
+                      >
+                        {content.cta.label}
+                      </a>
+                    </div>
+                  </>
+                )
+              }
             </div>
           </div>
         );
@@ -95,12 +130,20 @@ const vizMap: Record<CourseType, any> = {
     border-color: var(--primary);
   }
 
+  .course-card.intro-python::before {
+    background: var(--gradient-3);
+  }
+
   .course-card.algorithms::before {
     background: var(--gradient-1);
   }
 
   .course-card.python::before {
     background: var(--gradient-2);
+  }
+
+  .course-card.ai::before {
+    background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
   }
 
   .course-content {
@@ -137,7 +180,7 @@ const vizMap: Record<CourseType, any> = {
     font-size: 1.2rem;
   }
 
-  .python {
+  .course-card:last-child {
     margin-bottom: 0;
   }
 

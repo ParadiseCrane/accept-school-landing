@@ -1,0 +1,370 @@
+<div class="intro-python-card">
+  <div class="intro-python-header">
+    <div class="window-dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="intro-python-title">student_profile.py</div>
+    <div class="intro-python-badge">oop basics</div>
+  </div>
+
+  <div class="intro-python-code" id="introPythonCode"></div>
+
+  <div class="intro-python-footer">
+    <span>class</span>
+    <span>attributes</span>
+    <span>methods</span>
+    <span>objects</span>
+  </div>
+</div>
+
+<style>
+  .intro-python-card {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    background:
+      radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 35%),
+      linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.98));
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  }
+
+  .intro-python-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    background: rgba(15, 23, 42, 0.85);
+  }
+
+  .window-dots {
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  .window-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+  }
+
+  .window-dots span:nth-child(1) {
+    background: #fb7185;
+  }
+
+  .window-dots span:nth-child(2) {
+    background: #fbbf24;
+  }
+
+  .window-dots span:nth-child(3) {
+    background: #34d399;
+  }
+
+  .intro-python-title {
+    font-family: "JetBrains Mono", monospace;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+  }
+
+  .intro-python-badge {
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(132, 204, 22, 0.14);
+    color: #bef264;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .intro-python-code {
+    padding: 1.25rem;
+    height: 310px;
+    overflow: hidden;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.95rem;
+    background:
+      radial-gradient(circle at top right, rgba(45, 212, 191, 0.12), transparent 30%),
+      rgba(2, 6, 23, 0.42);
+  }
+
+  .intro-python-card :global(.py-line) {
+    color: #e2e8f0;
+    padding: 0.3rem 0;
+    min-height: 1.55em;
+    white-space: pre;
+  }
+
+  .intro-python-card :global(.token-keyword) {
+    color: #7dd3fc;
+  }
+
+  .intro-python-card :global(.token-class) {
+    color: #f8fafc;
+  }
+
+  .intro-python-card :global(.token-property) {
+    color: #67e8f9;
+  }
+
+  .intro-python-card :global(.token-type) {
+    color: #c4b5fd;
+  }
+
+  .intro-python-card :global(.token-name) {
+    color: #f8fafc;
+  }
+
+  .intro-python-card :global(.token-number) {
+    color: #c4b5fd;
+  }
+
+  .intro-python-card :global(.token-string) {
+    color: #fcd34d;
+  }
+
+  .intro-python-card :global(.token-operator) {
+    color: #fda4af;
+  }
+
+  .intro-python-card :global(.token-parameter) {
+    color: #fdba74;
+  }
+
+  .intro-python-card :global(.token-func) {
+    color: #86efac;
+  }
+
+  .intro-python-card :global(.token-comment) {
+    color: #94a3b8;
+  }
+
+  .intro-python-card :global(.typing-caret) {
+    display: inline-block;
+    width: 0.62ch;
+    height: 1.15em;
+    margin-left: 0.08rem;
+    vertical-align: -0.18em;
+    border-radius: 2px;
+    background: #5eead4;
+    animation: blink 1s step-end infinite;
+  }
+
+  .intro-python-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 1rem 1.25rem 1.25rem;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.92));
+  }
+
+  .intro-python-footer span {
+    padding: 0.42rem 0.76rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    background: rgba(15, 23, 42, 0.72);
+    color: #cbd5e1;
+    font-size: 0.86rem;
+  }
+
+  @keyframes blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @media (width < 768px) {
+    .intro-python-code {
+      height: 280px;
+      padding: 1rem;
+      font-size: 0.88rem;
+    }
+  }
+</style>
+
+<script defer>
+  function runIntroPythonViz() {
+    const root = document.getElementById("introPythonCode");
+
+    if (!root || root.dataset.bound === "true") return;
+
+    root.dataset.bound = "true";
+
+    const frames = [
+      [
+        [["token-comment", "# first class with properties"]],
+        [
+          ["token-keyword", "class"],
+          ["", " "],
+          ["token-class", "StudentProfile"],
+          ["token-operator", ":"],
+        ],
+        [["", "    "]],
+        [
+          ["", "    "],
+          ["token-keyword", "def"],
+          ["", " "],
+          ["token-func", "__init__"],
+          ["", "("],
+          ["token-parameter", "self"],
+          ["token-operator", ","],
+          ["", " "],
+          ["token-parameter", "name"],
+          ["token-operator", ":"],
+          ["", " "],
+          ["token-type", "str"],
+          ["token-operator", ","],
+          ["", " "],
+          ["token-parameter", "level"],
+          ["token-operator", ":"],
+          ["", " "],
+          ["token-type", "int"],
+          ["", "):"],
+        ],
+        [
+          ["", "        "],
+          ["token-parameter", "self"],
+          ["token-operator", "."],
+          ["token-property", "name"],
+          ["", " = "],
+          ["token-parameter", "name"],
+        ],
+        [
+          ["", "        "],
+          ["token-parameter", "self"],
+          ["token-operator", "."],
+          ["token-property", "level"],
+          ["", " = "],
+          ["token-parameter", "level"],
+        ],
+        [
+          ["", "        "],
+          ["token-parameter", "self"],
+          ["token-operator", "."],
+          ["token-property", "track"],
+          ["", ' = '],
+          ["token-string", '"Python Core"'],
+        ],
+        [["", ""]],
+        [
+          ["", "    "],
+          ["token-keyword", "def"],
+          ["", " "],
+          ["token-func", "summary"],
+          ["", "("],
+          ["token-parameter", "self"],
+          ["", ") -> "],
+          ["token-type", "str"],
+          ["token-operator", ":"],
+        ],
+        [
+          ["", "        "],
+          ["token-keyword", "return"],
+          ["", " "],
+          ["token-string", 'f"{self.name}: level {self.level}"'],
+        ],
+      ],
+    ];
+
+    const steps = frames.map((lines) =>
+      lines.map((segments) => ({
+        segments,
+        length: segments.reduce((total, [, text]) => total + text.length, 0),
+      })),
+    );
+
+    const totalChars = steps.map((lines) =>
+      lines.reduce((total, line) => total + line.length, 0),
+    );
+
+    const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+
+    const render = (stepIndex, visibleChars) => {
+      root.innerHTML = "";
+
+      const lines = steps[stepIndex];
+      let remaining = visibleChars;
+      let lastVisibleLine = null;
+
+      lines.forEach((line) => {
+        if (remaining <= 0) return;
+
+        const row = document.createElement("div");
+        row.className = "py-line";
+        let rowHasContent = false;
+
+        line.segments.forEach(([tokenClass, text]) => {
+          if (remaining <= 0) return;
+
+          const visibleText = text.slice(0, remaining);
+          remaining -= visibleText.length;
+
+          if (visibleText.length > 0) {
+            const span = document.createElement("span");
+            if (tokenClass) span.className = tokenClass;
+            span.textContent = visibleText.replace(/ /g, "\u00A0");
+            row.appendChild(span);
+            rowHasContent = true;
+          }
+        });
+
+        if (rowHasContent || line.length === 0) {
+          if (rowHasContent) row.classList.add("has-code");
+          root.appendChild(row);
+          lastVisibleLine = row;
+        }
+      });
+
+      if (!lastVisibleLine) {
+        lastVisibleLine = document.createElement("div");
+        lastVisibleLine.className = "py-line";
+        root.appendChild(lastVisibleLine);
+      }
+
+      const caret = document.createElement("span");
+      caret.className = "typing-caret";
+      lastVisibleLine.appendChild(caret);
+    };
+
+    const animate = async () => {
+      let stepIndex = 0;
+
+      while (true) {
+        const limit = totalChars[stepIndex];
+
+        for (let visible = 0; visible <= limit; visible += 1) {
+          render(stepIndex, visible);
+          await wait(28);
+        }
+
+        await wait(1400);
+
+        for (let visible = limit; visible >= 0; visible -= 1) {
+          render(stepIndex, visible);
+          await wait(16);
+        }
+
+        await wait(420);
+        stepIndex = (stepIndex + 1) % steps.length;
+      }
+    };
+
+    animate();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", runIntroPythonViz, { once: true });
+  } else {
+    runIntroPythonViz();
+  }
+</script>

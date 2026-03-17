@@ -5,8 +5,8 @@ interface Props {
 }
 
 const {
-  title = "Accept School — Онлайн-школа программирования нового поколения",
-  description = "Освойте Python и алгоритмы с нуля. Современная платформа, автоматическая проверка кода, обучение на английском. Курсы для школьников. Запишитесь!",
+  title = "Accept School — Курсы программирования с сильной практикой",
+  description = "Изучайте программирование на собственной платформе: Основы Python, алгоритмы, Современный Python и Введение в AI. Обучение на русском или английском языке.",
 } = Astro.props;
 ---
 
@@ -22,23 +22,23 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <script
       defer
       src="https://cloud.umami.is/script.js"
       data-website-id="dcde0e21-ef1a-4a7b-b561-6a5771b9ca25"></script>
-    <meta property="og:title" content="Accept School — Онлайн-школа программирования нового поколения">
-    <meta property="og:description" content="Изучайте Python, алгоритмы и Computer Science на собственной платформе с автопроверкой кода. Обучение на русском или английском языках.">
+    <meta property="og:title" content="Accept School — Курсы программирования с сильной практикой">
+    <meta property="og:description" content="Изучайте программирование на собственной платформе: Основы Python, алгоритмы, Современный Python и Введение в AI. Обучение на русском или английском языке.">
     <meta property="og:image" content="https://accept-school.ru/og-image.jpg">
     <meta property="og:url" content="https://accept-school.ru/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Accept School">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Accept School — Онлайн-школа программирования нового поколения">
-    <meta name="twitter:description" content="Изучайте Python, алгоритмы и Computer Science на собственной платформе с автопроверкой кода. Обучение на русском или английском с преподавателем мирового уровня.">
+    <meta name="twitter:title" content="Accept School — Курсы программирования с сильной практикой">
+    <meta name="twitter:description" content="Изучайте программирование на собственной платформе: Основы Python, алгоритмы, Современный Python и Введение в AI. Обучение на русском или английском языке.">
     <meta name="twitter:image" content="https://accept-school.ru/og-image.jpg">
 
     <script type="application/ld+json">
@@ -55,13 +55,31 @@ const {
         "https://t.me/accept_school_bot",
         "https://github.com/ParadiseCrane"
       ],
-      "description": "Онлайн-школа программирования нового поколения для школьников 7–11 классов"
+      "description": "Онлайн-школа программирования с живой практикой, сильными курсами и собственной платформой"
+    },
+    {
+      "@type": "Course",
+      "@id": "https://accept-school.ru/#course-intro-python",
+      "name": "Основы Python",
+      "description": "Базовый курс по программированию на Python. Разберётесь, как устроен код, научитесь писать небольшие программы и получите хорошую основу для дальнейшего обучения.",
+      "provider": {
+        "@id": "https://accept-school.ru/#organization"
+      },
+      "url": "https://t.me/accept_school_bot",
+      "educationalCredentialAwarded": "Сертификат о прохождении курса",
+      "timeRequired": "PT36H",
+      "teaches": [
+        "Переменные, условия, циклы и функции",
+        "Списки, словари, строки и базовые структуры данных",
+        "Знакомство с OOP, классами и объектами",
+        "Практика на учебных задачах и небольших проектах"
+      ]
     },
     {
       "@type": "Course",
       "@id": "https://accept-school.ru/#course-algorithms",
       "name": "Алгоритмы и структуры данных",
-      "description": "Фундаментальный курс для понимания основ computer science. Изучите алгоритмы сортировки, поиска, работу с графами, деревьями и другими структурами данных.",
+      "description": "Курс для системного понимания computer science. Разберёте ключевые алгоритмы, научитесь анализировать решения и уверенно работать со структурами данных.",
       "provider": {
         "@id": "https://accept-school.ru/#organization"
       },
@@ -78,8 +96,8 @@ const {
     {
       "@type": "Course",
       "@id": "https://accept-school.ru/#course-python",
-      "name": "Modern Python",
-      "description": "Изучите современный Python с использованием актуальных инструментов: uv, ruff, mypy. Освойте профессиональную разработку и лучшие практики индустрии.",
+      "name": "Современный Python",
+      "description": "Курс по современному Python и актуальным инструментам разработки. Освоите рабочий стек и подходы, которые используются в реальных проектах.",
       "provider": {
         "@id": "https://accept-school.ru/#organization"
       },
@@ -88,10 +106,29 @@ const {
       "timeRequired": "PT48H",
       "teaches": [
         "Современные инструменты разработки (uv, ruff)",
-        "Type hints и статическая типизация (mypy)",
+        "Type hints и статическая типизация (ty)",
         "FastAPI и асинхронное программирование",
-        "Работа с базами данных и API",
+        "Проектирование API и серверной логики",
         "Реальные проекты и code review"
+      ]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://accept-school.ru/#course-ai",
+      "name": "Введение в AI",
+      "description": "Вводный курс по основам искусственного интеллекта. Узнаете, как алгоритмы ищут решения, обучаются на данных и принимают решения на основе моделей.",
+      "provider": {
+        "@id": "https://accept-school.ru/#organization"
+      },
+      "url": "https://t.me/accept_school_bot",
+      "educationalCredentialAwarded": "Сертификат о прохождении курса",
+      "timeRequired": "PT36H",
+      "teaches": [
+        "Search algorithms и поиск оптимального решения",
+        "Evolutionary programming и идеи эволюции в вычислениях",
+        "Supervised learning на понятных примерах",
+        "Unsupervised learning и поиск скрытых закономерностей",
+        "Decision trees и базовые модели принятия решений"
       ]
     },
     {
@@ -103,7 +140,7 @@ const {
           "name": "Какой уровень подготовки нужен для начала?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Для курса 'Алгоритмы и структуры данных' желательно знание основ любого языка программирования. Курс 'Modern Python' подойдёт как для начинающих, так и для тех, кто хочет улучшить свои навыки."
+            "text": "Для курса 'Основы Python' специальная подготовка не нужна: можно начинать с нуля. Для 'Алгоритмов и структур данных' желательно знать основы любого языка программирования. 'Современный Python' подойдёт тем, кто уже пробовал писать код и хочет перейти к более системной практике."
           }
         },
         {
@@ -111,7 +148,7 @@ const {
           "name": "Как проходят занятия на English Track?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Все основные занятия проводятся полностью на английском языке. Дополнительно проводятся групповые занятия для развития беглой разговорной речи и технического английского. Преподаватель поддерживает студентов и помогает с языковыми трудностями."
+            "text": "Все основные занятия проводятся полностью на английском языке. Дополнительно проводятся групповые встречи для развития разговорных навыков и технического английского. Преподаватель помогает адаптироваться к формату и уверенно работать на английском языке."
           }
         },
         {
@@ -132,10 +169,10 @@ const {
         },
         {
           "@type": "Question",
-          "name": "Можно ли проходить оба курса одновременно?",
+          "name": "Можно ли проходить несколько курсов одновременно?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Да, можно. Многие студенты успешно совмещают оба курса. Однако мы рекомендуем начать с одного курса, чтобы качественно усвоить материал. Свяжитесь с нами через Telegram-бот, и мы поможем составить оптимальный план обучения."
+            "text": "Да, такая возможность есть. При этом совмещать несколько курсов может быть непросто: требуется время на занятия, домашние задания и практику. Если вы сомневаетесь, напишите нам в Telegram-бот, и мы поможем выбрать комфортный темп обучения."
           }
         }
       ]
@@ -151,21 +188,22 @@ const {
 
 <style is:global>
   :root {
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
-    --primary-light: #818cf8;
+    --primary: #14b8a6;
+    --primary-dark: #0f766e;
+    --primary-light: #5eead4;
     --secondary: #f59e0b;
-    --accent: #10b981;
-    --accent-cyan: #06b6d4;
-    --bg-dark: #0f172a;
-    --bg-darker: #020617;
-    --text-light: #f8fafc;
-    --text-muted: #94a3b8;
-    --border: #1e293b;
-    --code-bg: #1e293b;
-    --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    --gradient-2: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
-    --gradient-3: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+    --accent: #84cc16;
+    --accent-cyan: #22d3ee;
+    --bg-dark: #0d1722;
+    --bg-darker: #050c14;
+    --text-light: #f8fbff;
+    --text-muted: #90a7bd;
+    --border: rgba(226, 232, 240, 0.11);
+    --code-bg: #132231;
+    --card-bg: rgba(10, 22, 34, 0.78);
+    --gradient-1: linear-gradient(135deg, #14b8a6 0%, #22d3ee 100%);
+    --gradient-2: linear-gradient(135deg, #f97316 0%, #facc15 100%);
+    --gradient-3: linear-gradient(135deg, #84cc16 0%, #2dd4bf 100%);
   }
 
   * {
@@ -180,23 +218,52 @@ const {
 
   body {
     font-family:
-      "Manrope",
+      "Space Grotesk",
       -apple-system,
       sans-serif;
-    background: var(--bg-darker);
+    background:
+      radial-gradient(circle at top left, rgba(34, 211, 238, 0.08), transparent 28%),
+      radial-gradient(circle at top right, rgba(249, 115, 22, 0.08), transparent 26%),
+      linear-gradient(180deg, #07111b 0%, #050c14 45%, #07111b 100%);
     color: var(--text-light);
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  body::before {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent);
+  }
+
+  body::after {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.12), transparent 22%),
+      radial-gradient(circle at 80% 10%, rgba(245, 158, 11, 0.1), transparent 20%);
+    filter: blur(40px);
   }
 
   .container {
-    max-width: 1400px;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 
   .section {
-    padding: 6rem 0;
+    padding: 7rem 0;
   }
 
   .section-header {
@@ -205,30 +272,33 @@ const {
   }
 
   .section-header h2 {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     margin-bottom: 1rem;
-    letter-spacing: -1px;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
   }
 
   .section-header p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
     margin: 0 auto;
-    max-width: 700px;
+    max-width: 760px;
+    line-height: 1.75;
   }
 
   .section-header-secondary h3 {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
+    letter-spacing: -0.04em;
     margin-bottom: 1rem;
   }
 
   .section-header-secondary p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--text-muted);
     margin-bottom: 2rem;
-    line-height: 1.8;
+    line-height: 1.85;
   }
 
   .gradient-text {
@@ -241,23 +311,43 @@ const {
   .btn-primary,
   .btn-secondary {
     color: var(--text-light);
-    padding: 1rem 2.5rem;
-    border-radius: 12px;
+    padding: 1rem 2rem;
+    border-radius: 999px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
+    font-weight: 700;
+    font-size: 1rem;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease,
+      background 0.3s ease;
     display: inline-block;
   }
 
   .btn-primary {
     background: var(--gradient-1);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 18px 40px rgba(20, 184, 166, 0.22);
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 22px 44px rgba(20, 184, 166, 0.3);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: rgba(94, 234, 212, 0.4);
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.28);
+    color: var(--text-light);
   }
 
   .btn-secondary {

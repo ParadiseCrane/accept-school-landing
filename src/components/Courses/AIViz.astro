@@ -1,0 +1,454 @@
+<div class="ai-card">
+  <div class="ai-header">
+    <div class="ai-title">neural_graph</div>
+    <div class="ai-badge" id="aiBadge">signal ready</div>
+  </div>
+
+  <div class="ai-network-shell">
+    <div class="ai-input-chip" id="aiInputChip">input: [0.2, 0.8]</div>
+
+    <div class="ai-network">
+      <svg
+        class="ai-edges"
+        viewBox="0 0 520 260"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <line x1="78" y1="78" x2="205" y2="58"></line>
+        <line x1="78" y1="78" x2="205" y2="130"></line>
+        <line x1="78" y1="78" x2="205" y2="202"></line>
+
+        <line x1="78" y1="182" x2="205" y2="58"></line>
+        <line x1="78" y1="182" x2="205" y2="130"></line>
+        <line x1="78" y1="182" x2="205" y2="202"></line>
+
+        <line x1="230" y1="58" x2="360" y2="92"></line>
+        <line x1="230" y1="58" x2="360" y2="168"></line>
+        <line x1="230" y1="130" x2="360" y2="92"></line>
+        <line x1="230" y1="130" x2="360" y2="168"></line>
+        <line x1="230" y1="202" x2="360" y2="92"></line>
+        <line x1="230" y1="202" x2="360" y2="168"></line>
+
+        <line x1="385" y1="92" x2="456" y2="130"></line>
+        <line x1="385" y1="168" x2="456" y2="130"></line>
+      </svg>
+
+      <div class="layer-label input-label">input</div>
+      <div class="layer-label hidden-one-label">hidden</div>
+      <div class="layer-label hidden-two-label">hidden</div>
+      <div class="layer-label output-label">output</div>
+
+      <div class="node input-node" id="node-i1"></div>
+      <div class="node input-node" id="node-i2"></div>
+
+      <div class="node hidden-node" id="node-h1"></div>
+      <div class="node hidden-node" id="node-h2"></div>
+      <div class="node hidden-node" id="node-h3"></div>
+
+      <div class="node hidden-node" id="node-h4"></div>
+      <div class="node hidden-node" id="node-h5"></div>
+
+      <div class="node output-node" id="node-o1"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ai-card {
+    width: 100%;
+    max-width: 550px;
+    padding: 1.25rem;
+    border-radius: 20px;
+    border: 1px solid rgba(6, 182, 212, 0.18);
+    background:
+      radial-gradient(circle at top left, rgba(6, 182, 212, 0.14), transparent 35%),
+      linear-gradient(180deg, rgba(8, 15, 28, 0.98), rgba(3, 7, 18, 0.98));
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
+  }
+
+  .ai-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .ai-title {
+    font-family: "JetBrains Mono", monospace;
+    color: #e0f2fe;
+    font-weight: 700;
+  }
+
+  .ai-badge {
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(34, 211, 238, 0.12);
+    color: #67e8f9;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+  }
+
+  .ai-network-shell {
+    border-radius: 18px;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    background:
+      radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 28%),
+      rgba(15, 23, 42, 0.72);
+    padding: 1rem;
+  }
+
+  .ai-input-chip {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    border: 1px dashed rgba(148, 163, 184, 0.26);
+    background: rgba(15, 23, 42, 0.9);
+    color: #cbd5e1;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82rem;
+  }
+
+  .ai-network {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+  }
+
+  .ai-edges {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-edges line {
+    stroke: rgba(148, 163, 184, 0.34);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 5 7;
+  }
+
+  .layer-label {
+    position: absolute;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #94a3b8;
+  }
+
+  .input-label {
+    left: 42px;
+    top: 6px;
+  }
+
+  .hidden-one-label {
+    left: 164px;
+    top: 6px;
+  }
+
+  .hidden-two-label {
+    left: 315px;
+    top: 6px;
+  }
+
+  .output-label {
+    right: 22px;
+    top: 6px;
+  }
+
+  .node {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    border: 2px solid rgba(148, 163, 184, 0.46);
+    background:
+      radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.12), transparent 38%),
+      rgba(15, 23, 42, 0.96);
+    transform: translate(-50%, -50%);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .output-node {
+    width: 32px;
+    height: 32px;
+  }
+
+  #node-i1 {
+    left: 78px;
+    top: 78px;
+  }
+
+  #node-i2 {
+    left: 78px;
+    top: 182px;
+  }
+
+  #node-h1 {
+    left: 205px;
+    top: 58px;
+  }
+
+  #node-h2 {
+    left: 205px;
+    top: 130px;
+  }
+
+  #node-h3 {
+    left: 205px;
+    top: 202px;
+  }
+
+  #node-h4 {
+    left: 360px;
+    top: 92px;
+  }
+
+  #node-h5 {
+    left: 360px;
+    top: 168px;
+  }
+
+  #node-o1 {
+    left: 456px;
+    top: 130px;
+  }
+
+  .ai-input-chip.active {
+    color: #ecfeff;
+    border-color: rgba(34, 211, 238, 0.54);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.16);
+  }
+
+  .node.active {
+    border-color: rgba(34, 211, 238, 0.95);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(103, 232, 249, 0.95), rgba(34, 211, 238, 0.26) 58%, rgba(15, 23, 42, 0.96) 78%),
+      rgba(15, 23, 42, 0.96);
+    box-shadow:
+      0 0 0 4px rgba(34, 211, 238, 0.1),
+      0 0 22px rgba(34, 211, 238, 0.26);
+    transform: translate(-50%, -50%) scale(1.12);
+    animation: nodePulse 0.75s ease-out;
+  }
+
+  .output-node.active {
+    border-color: rgba(74, 222, 128, 0.95);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(190, 242, 100, 0.95), rgba(74, 222, 128, 0.28) 58%, rgba(15, 23, 42, 0.96) 78%),
+      rgba(15, 23, 42, 0.96);
+    box-shadow:
+      0 0 0 4px rgba(74, 222, 128, 0.1),
+      0 0 28px rgba(74, 222, 128, 0.28);
+  }
+
+  .output-node.active.orange {
+    border-color: rgba(251, 146, 60, 0.95);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(254, 215, 170, 0.95), rgba(251, 146, 60, 0.3) 58%, rgba(15, 23, 42, 0.96) 78%),
+      rgba(15, 23, 42, 0.96);
+    box-shadow:
+      0 0 0 4px rgba(251, 146, 60, 0.1),
+      0 0 28px rgba(251, 146, 60, 0.28);
+  }
+
+  @keyframes nodePulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0.9);
+      opacity: 0.72;
+    }
+    55% {
+      transform: translate(-50%, -50%) scale(1.18);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.12);
+      opacity: 1;
+    }
+  }
+
+  @media (width < 768px) {
+    .ai-card {
+      padding: 1rem;
+    }
+
+    .ai-network-shell {
+      padding: 0.8rem;
+    }
+
+    .ai-network {
+      height: 220px;
+    }
+
+    .layer-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+    }
+
+    .input-label {
+      left: 20px;
+    }
+
+    .hidden-one-label {
+      left: 122px;
+    }
+
+    .hidden-two-label {
+      left: 244px;
+    }
+
+    .output-label {
+      right: 6px;
+    }
+
+    .node {
+      width: 20px;
+      height: 20px;
+    }
+
+    .output-node {
+      width: 28px;
+      height: 28px;
+    }
+
+    #node-i1 {
+      left: 58px;
+      top: 74px;
+    }
+
+    #node-i2 {
+      left: 58px;
+      top: 160px;
+    }
+
+    #node-h1 {
+      left: 160px;
+      top: 56px;
+    }
+
+    #node-h2 {
+      left: 160px;
+      top: 118px;
+    }
+
+    #node-h3 {
+      left: 160px;
+      top: 182px;
+    }
+
+    #node-h4 {
+      left: 280px;
+      top: 86px;
+    }
+
+    #node-h5 {
+      left: 280px;
+      top: 152px;
+    }
+
+    #node-o1 {
+      left: 360px;
+      top: 120px;
+    }
+  }
+</style>
+
+<script defer>
+  function runAiViz() {
+    const badge = document.getElementById("aiBadge");
+    const inputChip = document.getElementById("aiInputChip");
+
+    if (!badge || !inputChip || badge.dataset.bound === "true") return;
+
+    badge.dataset.bound = "true";
+
+    const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+    const groups = {
+      input: ["node-i1", "node-i2"],
+      hiddenOne: ["node-h1", "node-h2", "node-h3"],
+      hiddenTwo: ["node-h4", "node-h5"],
+      output: ["node-o1"],
+    };
+
+    const resolvedGroups = Object.fromEntries(
+      Object.entries(groups).map(([key, ids]) => [
+        key,
+        ids.map((id) => document.getElementById(id)).filter(Boolean),
+      ]),
+    );
+
+    const allNodes = Object.values(resolvedGroups).flat();
+
+    const reset = () => {
+      inputChip.classList.remove("active");
+      allNodes.forEach((node) => node.classList.remove("active", "orange"));
+    };
+
+    const activateGroup = async (nodes, delay) => {
+      for (const node of nodes) {
+        node.classList.add("active");
+        await wait(delay);
+      }
+    };
+
+    const sampleNodes = (nodes, minCount, maxCount) => {
+      const shuffled = [...nodes].sort(() => Math.random() - 0.5);
+      const count = Math.min(
+        nodes.length,
+        minCount + Math.floor(Math.random() * (maxCount - minCount + 1)),
+      );
+      return shuffled.slice(0, count);
+    };
+
+    const animate = async () => {
+      while (true) {
+        reset();
+        badge.textContent = "signal ready";
+
+        const inputNodes = sampleNodes(resolvedGroups.input, 1, 2);
+        const hiddenOneNodes = sampleNodes(resolvedGroups.hiddenOne, 1, 2);
+        const hiddenTwoNodes = sampleNodes(resolvedGroups.hiddenTwo, 1, 1);
+        const outputNodes = resolvedGroups.output;
+        const outputIsOrange = Math.random() < 0.5;
+
+        inputChip.classList.add("active");
+        await wait(700);
+
+        badge.textContent = "input";
+        await activateGroup(inputNodes, 380);
+        await wait(320);
+
+        badge.textContent = "hidden layer 1";
+        await activateGroup(hiddenOneNodes, 420);
+        await wait(380);
+
+        badge.textContent = "hidden layer 2";
+        await activateGroup(hiddenTwoNodes, 500);
+        await wait(420);
+
+        badge.textContent = outputIsOrange ? "output: orange" : "output: green";
+        if (outputIsOrange) {
+          outputNodes.forEach((node) => node.classList.add("orange"));
+        }
+        await activateGroup(outputNodes, 650);
+
+        await wait(2200);
+      }
+    };
+
+    animate();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", runAiViz, { once: true });
+  } else {
+    runAiViz();
+  }
+</script>

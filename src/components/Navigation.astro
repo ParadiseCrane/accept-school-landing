@@ -66,25 +66,31 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(15, 23, 42, 0.8);
-    border-bottom: 1px solid var(--border);
     z-index: 1000;
+    padding-top: 1rem;
   }
 
-  nav.scrolled {
-    background: rgba(15, 23, 42, 0.95);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  nav.scrolled .nav-container {
+    background: rgba(7, 17, 27, 0.9);
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.28);
   }
 
   .nav-container {
-    max-width: 1400px;
+    max-width: 1320px;
     margin: 0 auto;
+    width: calc(100% - 2rem);
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 5rem;
-    padding: 0 2rem;
+    height: 5.25rem;
+    padding: 0 1.5rem;
     backdrop-filter: blur(20px);
+    background: rgba(7, 17, 27, 0.72);
+    border: 1px solid rgba(226, 232, 240, 0.09);
+    border-radius: 999px;
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   .nav-links {
@@ -99,7 +105,7 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
   .mobile-links a {
     color: var(--text-muted);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.95rem;
     transition: color 0.3s ease;
     position: relative;
@@ -114,37 +120,41 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
   .mobile-links a::after {
     content: "";
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-1);
-    transition: width 0.3s ease;
+    bottom: -7px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.3s ease;
   }
 
   .nav-links a:hover::after,
   .mobile-links a:hover::after {
-    width: 100%;
+    transform: translateX(-50%) scale(1);
   }
 
   .cta-button {
     background: var(--gradient-1);
     color: white;
-    padding: 0.75rem 1.75rem;
-    border-radius: 12px;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.95rem;
     transition:
       transform 0.3s ease,
-      box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      box-shadow 0.3s ease,
+      filter 0.3s ease;
+    box-shadow: 0 16px 28px rgba(20, 184, 166, 0.2);
     white-space: nowrap;
   }
 
   .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 18px 34px rgba(20, 184, 166, 0.3);
+    filter: saturate(1.05);
   }
 
   .cta-button::after {
@@ -155,9 +165,9 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
     display: none;
     width: 44px;
     height: 44px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: rgba(15, 23, 42, 0.35);
+    border: 1px solid rgba(226, 232, 240, 0.09);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(12px);
     cursor: pointer;
     align-items: center;
@@ -197,7 +207,7 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
     pointer-events: none;
     transition: opacity 0.25s ease;
     z-index: 999;
-    margin-top: 5rem;
+    margin-top: 0;
   }
 
   .menu-backdrop.is-open {
@@ -207,9 +217,9 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
 
   .mobile-menu {
     position: fixed;
-    top: 72px;
-    background: rgba(15, 23, 42, 0.8);
-    border-bottom: 1px solid var(--border);
+    top: 6.4rem;
+    background: rgba(7, 17, 27, 0.88);
+    border: 1px solid rgba(226, 232, 240, 0.09);
     backdrop-filter: blur(20px);
     transform: translateY(-8px);
     opacity: 0;
@@ -218,14 +228,16 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
       opacity 0.25s ease,
       transform 0.25s ease;
     z-index: 1000;
-    width: 100%;
-    right: 0;
-    max-width: 320px;
-    height: 100%;
-    padding: 1rem 2rem;
+    width: min(360px, calc(100% - 2rem));
+    right: 1rem;
+    max-width: 360px;
+    height: auto;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    border-radius: 28px;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
   }
 
   .mobile-menu[data-open="true"] {
@@ -255,6 +267,7 @@ const { links: navLinks, cta, aria } = entry.data as NavData;
 
     .nav-container {
       padding: 0 1rem;
+      width: calc(100% - 1rem);
     }
   }
 
